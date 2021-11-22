@@ -23,6 +23,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         text.font = UIFont.systemFont(ofSize: 43, weight: .medium)
         text.textAlignment = .center
         text.textColor = .white
+        text.numberOfLines = 0
         return text
     }()
     
@@ -76,12 +77,12 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     }
     private func configcontainerView() {
         contentView.addSubview(containerView)
-        
         containerView.snp.makeConstraints { make in
 //            make.height.equalTo(270)
             make.left.right.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(25)
+            make.top.bottom.equalToSuperview()
         }
+        containerView.backgroundColor = .clear
     }
     
     private func configCityLabel() {
@@ -90,7 +91,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         cityName.snp.makeConstraints { make in
 //            make.height.equalTo(60)
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().inset(40)
+            make.top.equalToSuperview().inset(20)
         }
     }
     

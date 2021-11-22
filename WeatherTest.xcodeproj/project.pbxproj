@@ -21,6 +21,10 @@
 		5F34255A2747B16A00218A4B /* CurrentWeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3425582747B16900218A4B /* CurrentWeatherTableViewCell.xib */; };
 		5F3425602747CE5300218A4B /* WeatherForAWeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F34255E2747CE5300218A4B /* WeatherForAWeekTableViewCell.swift */; };
 		5F3425612747CE5300218A4B /* WeatherForAWeekTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F34255F2747CE5300218A4B /* WeatherForAWeekTableViewCell.xib */; };
+		5F5915CC274A44BC00EE8C05 /* UIView+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */; };
+		5F5915CE274A586D00EE8C05 /* UIImage+ExstensionGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */; };
+		5F5915D8274B00E400EE8C05 /* SearcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */; };
+		5FCDF214274BDB9100D62359 /* jsonweather.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FCDF213274BDB9100D62359 /* jsonweather.json */; };
 		5FDCD36727491C81001FBD39 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCD36627491C81001FBD39 /* WeatherResponse.swift */; };
 		5FF2D49A2748104100F67977 /* WeekCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF2D4992748104100F67977 /* WeekCollectionViewCell.swift */; };
 		5FF2D4A027482A1500F67977 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF2D49F27482A1500F67977 /* DynamicHeightCollectionView.swift */; };
@@ -44,6 +48,10 @@
 		5F3425582747B16900218A4B /* CurrentWeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentWeatherTableViewCell.xib; sourceTree = "<group>"; };
 		5F34255E2747CE5300218A4B /* WeatherForAWeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForAWeekTableViewCell.swift; sourceTree = "<group>"; };
 		5F34255F2747CE5300218A4B /* WeatherForAWeekTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherForAWeekTableViewCell.xib; sourceTree = "<group>"; };
+		5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+UIColor.swift"; sourceTree = "<group>"; };
+		5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ExstensionGif.swift"; sourceTree = "<group>"; };
+		5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherViewController.swift; sourceTree = "<group>"; };
+		5FCDF213274BDB9100D62359 /* jsonweather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsonweather.json; sourceTree = "<group>"; };
 		5FDCD36627491C81001FBD39 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		5FF2D4992748104100F67977 /* WeekCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCollectionViewCell.swift; sourceTree = "<group>"; };
 		5FF2D49F27482A1500F67977 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
@@ -76,7 +84,9 @@
 		5F0D98622749BD9300CFD9B2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */,
 				5FF2D4A1274833F300F67977 /* UIView+Extension.swift */,
+				5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -85,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3425532747A16B00218A4B /* MainViewController.swift */,
+				5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -118,6 +129,7 @@
 				5F0D98632749BDAA00CFD9B2 /* ViewControllers */,
 				5F3425442747A08A00218A4B /* Main.storyboard */,
 				5F3425472747A08C00218A4B /* Assets.xcassets */,
+				5FCDF213274BDB9100D62359 /* jsonweather.json */,
 				5F34254C2747A08C00218A4B /* Info.plist */,
 				5F0D98622749BD9300CFD9B2 /* Extensions */,
 			);
@@ -248,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FCDF214274BDB9100D62359 /* jsonweather.json in Resources */,
 				5F34254B2747A08C00218A4B /* LaunchScreen.storyboard in Resources */,
 				5F3425482747A08C00218A4B /* Assets.xcassets in Resources */,
 				5F34255A2747B16A00218A4B /* CurrentWeatherTableViewCell.xib in Resources */,
@@ -312,9 +325,12 @@
 				5FF2D4A2274833F300F67977 /* UIView+Extension.swift in Sources */,
 				5FF2D4A027482A1500F67977 /* DynamicHeightCollectionView.swift in Sources */,
 				5F34253F2747A08A00218A4B /* AppDelegate.swift in Sources */,
+				5F5915CC274A44BC00EE8C05 /* UIView+UIColor.swift in Sources */,
 				5F3425412747A08A00218A4B /* SceneDelegate.swift in Sources */,
 				5FDCD36727491C81001FBD39 /* WeatherResponse.swift in Sources */,
 				5FF2D49A2748104100F67977 /* WeekCollectionViewCell.swift in Sources */,
+				5F5915D8274B00E400EE8C05 /* SearcherViewController.swift in Sources */,
+				5F5915CE274A586D00EE8C05 /* UIImage+ExstensionGif.swift in Sources */,
 				5F0D985A2749716A00CFD9B2 /* Parameters.swift in Sources */,
 				5F0D985E2749981400CFD9B2 /* DailyWeatherResponse.swift in Sources */,
 			);

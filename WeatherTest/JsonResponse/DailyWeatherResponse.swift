@@ -5,23 +5,42 @@
 //  Created by Tata on 20/11/21.
 //
 
-import Foundation
+//import Foundation
+//
+//struct DailyWeatherResponse: Codable {
+//    let daily: [Daily]
+//}
+//
+//struct Daily: Codable {
+//    let dt: Float
+//    let temp: Temp
+//    let weather: [WeatherIcon]
+//
+//}
+//
+//struct Temp: Codable {
+//    let day: Float
+//}
+//
+//struct WeatherIcon: Codable {
+//    let icon: String
+//}
+//
 
 struct DailyWeatherResponse: Codable {
-    let daily: [Daily]
+    let list: [ListStruct]
 }
 
-struct Daily: Codable {
+struct ListStruct: Codable {
     let dt: Float
-    let temp: Temp
-    let weather: [WeatherIcon]
-
+    let main: MainStruct
+    let weather: [WeatherStruct]
 }
 
-struct Temp: Codable {
-    let day: Float
+struct MainStruct: Codable {
+    let temp: Float
 }
 
-struct WeatherIcon: Codable {
+struct WeatherStruct: Codable {
     let icon: String
 }

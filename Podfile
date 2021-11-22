@@ -6,6 +6,7 @@ target 'WeatherTest' do
   use_frameworks!
 
 pod 'SnapKit'
+pod 'lottie-ios'
 
   # Pods for WeatherTest
 

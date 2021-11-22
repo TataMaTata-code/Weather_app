@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class WeekCollectionViewCell: UICollectionViewCell {
  
@@ -13,31 +14,24 @@ class WeekCollectionViewCell: UICollectionViewCell {
     
     let dayOfWeek: UILabel = {
         let textLabel = UILabel()
-        textLabel.text = ""
-        textLabel.font = UIFont.systemFont(ofSize: 30)
+        textLabel.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        textLabel.textColor = .white
         textLabel.textAlignment = .center
         return textLabel
     }()
     
     let iconWeather: UIImageView = {
         let icon = UIImageView()
-        icon.image = UIImage(named: "")
         return icon
     }()
     
     let temperature: UILabel = {
         let textLabel = UILabel()
-        textLabel.text = ""
-        textLabel.font = UIFont.systemFont(ofSize: 30)
+        textLabel.font = UIFont.systemFont(ofSize: 25,weight: .medium)
+        textLabel.textColor = .white
         textLabel.textAlignment = .center
         return textLabel
     }()
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        configText()
-    }
     
     func configText() {
         contentView.addSubview(dayOfWeek)
@@ -46,14 +40,14 @@ class WeekCollectionViewCell: UICollectionViewCell {
         
         dayOfWeek.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().inset(20)
+            make.bottom.equalTo(iconWeather.snp.top).offset(-10)
         }
         
         iconWeather.snp.makeConstraints { make in
 //            make.left.right.equalToSuperview()
-            make.top.equalTo(dayOfWeek.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
-            make.size.equalTo(80)
+            make.center.equalToSuperview()
+            make.width.equalTo(50)
+            make.height.equalTo(49)
         }
         
         temperature.snp.makeConstraints { make in
