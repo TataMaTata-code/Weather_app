@@ -63,19 +63,18 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
         config()
     }
 
     private func config() {
-        configcontainerView()
+        configСontainerView()
         configCityLabel()
         configTemperatureLabel()
         configWeatherMain()
         configHumidity()
         configWind()
     }
-    private func configcontainerView() {
+    private func configСontainerView() {
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints { make in
 //            make.height.equalTo(270)
@@ -136,12 +135,6 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         descriptionWeather.text = descrip
         humidityLabel.text = humidity
         windLabel.text = wind
-        
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
     }
     
     static func nib() -> UINib {

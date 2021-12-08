@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import CoreLocation
 
+
 class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -43,7 +44,7 @@ class MainViewController: UIViewController {
         tableView.register(WeatherForAWeekTableViewCell.nib(), forCellReuseIdentifier: WeatherForAWeekTableViewCell.identifier)
     }
     
-    //MARK: - Location
+//MARK: - Location
     
     private func configLocation() {
         locationManager.delegate = self
@@ -71,34 +72,34 @@ class MainViewController: UIViewController {
         }
     }
     
-    //MARK: - Config cell
+//MARK: - Config cell
     
-    private func city(indexPath : IndexPath) -> String{
+    private func city(indexPath: IndexPath) -> String {
         let city = model?.name ?? ""
         return city
     }
     
-    private func temp(indexPath : IndexPath) -> String{
+    private func temp(indexPath: IndexPath) -> String {
         let temp = " \(Int(model?.main.temp ?? 0))°"
         return temp
     }
     
-    private func descript(indexPath : IndexPath) -> String{
+    private func descript(indexPath: IndexPath) -> String {
         let descript = model?.weather[indexPath.row].main ?? ""
         return descript
     }
     
-    private func humidity(indexPath : IndexPath) -> String{
+    private func humidity(indexPath: IndexPath) -> String {
         let humidity = "Humidity: \(Double(model?.main.humidity ?? 0))%"
         return humidity
     }
     
-    private func wind(indexPath : IndexPath) -> String{
+    private func wind(indexPath: IndexPath) -> String {
         let wind = "Wind: \(Int(model?.wind.speed ?? 0)) m/s"
         return wind
     }
     
-    //MARK: - API
+//MARK: - API
     
     func loadWeatherForecast() {
         
@@ -128,7 +129,7 @@ class MainViewController: UIViewController {
                                   URLQueryItem(name: Parameters.appid, value: Constants.CurrentWeatherForecast.apiKey)]
         return components?.url
     }
-    //MARK: - Actions
+//MARK: - Actions
     
     @IBAction func actionAddCity(_ sender: Any) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "SearcherViewController") as? SearcherViewController {
@@ -164,9 +165,7 @@ extension MainViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrentWeatherTableViewCell.identifier, for: indexPath) as? CurrentWeatherTableViewCell else { return UITableViewCell() }
-            
             cell.backgroundColor = .clear
-            
             cell.setupAllConfig(city: city(indexPath: indexPath),
                                 temperature: temp(indexPath: indexPath),
                                 descrip: descript(indexPath: indexPath),

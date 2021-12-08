@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Lottie
+
 
 class WeekCollectionViewCell: UICollectionViewCell {
  

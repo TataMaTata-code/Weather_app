@@ -38,7 +38,7 @@
             <connections>
                 <outlet property="collectionView" destination="ZZ5-Ot-Jbu" id="gw0-2r-RNK"/>
             </connections>
-            <point key="canvasLocation" x="205.79710144927537" y="3.3482142857142856"/>
+            <point key="canvasLocation" x="38" y="-5"/>
         </tableViewCell>
     </objects>
 </document>
