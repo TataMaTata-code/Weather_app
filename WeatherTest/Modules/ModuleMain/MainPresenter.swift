@@ -53,6 +53,5 @@ extension MainPresenterImp: MainInteractorOuput {
 extension MainPresenterImp: ModuleOuput {
     func didUpdateModel(model: WeatherModel) {
         updateModel(with: model)
-        
     }
 }

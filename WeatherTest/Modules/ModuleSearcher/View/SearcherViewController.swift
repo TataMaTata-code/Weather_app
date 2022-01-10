@@ -20,6 +20,10 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
         searcher.delegate = self
         
     }
+    @IBAction func swipeBack(_ sender: Any) {
+        presenter.dismissSearcher()
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
 //        city = searchController.searchBar.text ?? ""
 

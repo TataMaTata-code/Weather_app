@@ -21,6 +21,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewIsReady()
+        config()
+    }
+    
+    private func config() {
+        gradientView()
         configTableView()
     }
     
@@ -30,6 +35,13 @@ class MainViewController: UIViewController {
         tableView.register(CurrentWeatherTableViewCell.nib(), forCellReuseIdentifier: CurrentWeatherTableViewCell.identifier)
         tableView.register(WeatherHourlyTableViewCell.nib(), forCellReuseIdentifier: WeatherHourlyTableViewCell.identifier)
         tableView.register(DailyWeatherTableViewCell.nib(), forCellReuseIdentifier: DailyWeatherTableViewCell.indetifier)
+    }
+    
+    private func gradientView() {
+        guard let firstColor = UIColor(hex: "#6190e8") else { return }
+        guard let secondColor = UIColor(hex: "#a7bfe8") else { return }
+        view.addGradientAxial(firstColor: firstColor, secondColor: secondColor)
+        
     }
     
     private func setDayOfWeek(indexPath: IndexPath) -> String {
