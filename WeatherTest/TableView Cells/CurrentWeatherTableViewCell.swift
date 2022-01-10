@@ -5,6 +5,7 @@
 //  Created by Tata on 19/11/21.
 //
 import UIKit
+import SnapKit
 
 class CurrentWeatherTableViewCell: UITableViewCell {
 
@@ -20,7 +21,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     var cityName: UILabel = {
         let text = UILabel()
-        text.font = UIFont.systemFont(ofSize: 43, weight: .medium)
+        text.font = UIFont.systemFont(ofSize: 30, weight: .medium)
         text.textAlignment = .center
         text.textColor = .white
         text.numberOfLines = 0
@@ -45,7 +46,6 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     var humidityLabel: UILabel = {
        let text = UILabel()
-//        text.text = "Humidity: 86%"
         text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         text.textAlignment = .center
         text.textColor = .white
@@ -54,7 +54,6 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     var windLabel: UILabel = {
        let text = UILabel()
-//        text.text = "Wind: 6 m/s"
         text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         text.textAlignment = .center
         text.textColor = .white
@@ -77,7 +76,6 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     private func configСontainerView() {
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints { make in
-//            make.height.equalTo(270)
             make.left.right.equalToSuperview()
             make.top.bottom.equalToSuperview()
         }
@@ -85,21 +83,16 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     }
     
     private func configCityLabel() {
-        
         containerView.addSubview(cityName)
         cityName.snp.makeConstraints { make in
-//            make.height.equalTo(60)
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview().inset(20)
+            make.left.right.top.equalToSuperview()
         }
     }
     
     private func configTemperatureLabel() {
-        
         containerView.addSubview(temperatureLabel)
         temperatureLabel.snp.makeConstraints { make in
-//            make.height.equalTo(60)
-            make.top.equalTo(cityName.snp.bottom).offset(10)
+            make.top.equalTo(cityName.snp.bottom)
             make.left.right.equalToSuperview()
         }
     }
@@ -125,7 +118,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         windLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(humidityLabel.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
     

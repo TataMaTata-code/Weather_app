@@ -6,24 +6,68 @@
 //
 
 struct WeatherResponse: Codable {
-    let weather: [Weather]
-    let main: Main
-    let wind: Wind
-    let name: String
+    let current: Current
+    let daily: [Daily]
 }
-
-struct Weather: Codable {
-    let main: String
-    let description: String
-    
-}
-
-struct Main: Codable {
+struct Current: Codable {
     let temp: Float
     let humidity: Float
+    let wind_speed: Float
+    let weather: [Weather]
+}
+struct Weather: Codable {
+    let description: String
+    let icon: String
+}
+struct Daily: Codable {
+    let dt: Float
+    let temp: Temp
+    let weather: [WeatherDaily]
+}
+struct Temp: Codable {
+    let min: Float
+    let max: Float
+}
+struct WeatherDaily: Codable {
+    let icon: String
 }
 
-struct Wind: Codable {
-    let speed: Float
-}
+
+
+
+
+
+
+
+
+
+//struct WeatherResponse: Codable {
+//    let list: [ListStruct]
+//    let city: City
+//}
+//
+//struct City: Codable {
+//    let name: String
+//}
+//
+//struct ListStruct: Codable {
+//    let dt: Float
+//    let main: MainStruct
+//    let weather: [WeatherStruct]
+//    let wind: WindSpeed
+//}
+//
+//struct MainStruct: Codable {
+//    let temp: Float
+//    let humidity: Float
+//}
+//
+//struct WeatherStruct: Codable {
+//    let main: String
+//    let icon: String
+//}
+//
+//struct WindSpeed: Codable {
+//    let speed: Float
+//}
 

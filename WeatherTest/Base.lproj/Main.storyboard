@@ -33,32 +33,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LrY-Ji-OBB">
-                                <rect key="frame" x="0.0" y="74" width="414" height="788"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LrY-Ji-OBB">
+                                <rect key="frame" x="0.0" y="59" width="414" height="803"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRv-f8-hCK">
-                                <rect key="frame" x="354" y="45.5" width="30" height="25"/>
+                                <rect key="frame" x="349" y="34.5" width="25" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="Sdb-ww-Sxt"/>
-                                    <constraint firstAttribute="width" constant="30" id="g9B-b9-0QP"/>
+                                    <constraint firstAttribute="height" constant="28" id="Sdb-ww-Sxt"/>
+                                    <constraint firstAttribute="width" constant="25" id="g9B-b9-0QP"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
                                     <imageReference key="backgroundImage" image="plus" catalog="system" symbolScale="small"/>
                                 </state>
                                 <connections>
-                                    <action selector="actionAddCity:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VpB-D5-8xL"/>
+                                    <action selector="actionShowSearchScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EGf-bz-avX"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.50475921963267867" green="0.7074259300999991" blue="0.92554427638198389" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eRv-f8-hCK" secondAttribute="trailing" constant="30" id="0IM-TO-kkd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eRv-f8-hCK" secondAttribute="trailing" constant="40" id="0IM-TO-kkd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LrY-Ji-OBB" secondAttribute="bottom" id="De7-ph-CK4"/>
                             <constraint firstItem="LrY-Ji-OBB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GYb-kB-D5S"/>
-                            <constraint firstItem="LrY-Ji-OBB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="TOO-5X-AmU"/>
+                            <constraint firstItem="LrY-Ji-OBB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="TOO-5X-AmU"/>
                             <constraint firstItem="LrY-Ji-OBB" firstAttribute="top" secondItem="eRv-f8-hCK" secondAttribute="bottom" id="lc4-dD-NAQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LrY-Ji-OBB" secondAttribute="trailing" id="psn-RK-xOy"/>
                         </constraints>
@@ -103,11 +104,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUf-2p-Zlv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="DTK-Jo-GnM">
-                    <connections>
-                        <action selector="goBackToMain:" destination="FDQ-4F-tNx" id="xF2-yE-ZUE"/>
-                    </connections>
-                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="DTK-Jo-GnM"/>
             </objects>
             <point key="canvasLocation" x="743" y="80"/>
         </scene>

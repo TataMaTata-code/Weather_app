@@ -6,13 +6,13 @@
 //
 
 enum Constants {
-    enum CurrentWeatherForecast {
-        static let baseUrl = "https://api.openweathermap.org/data/2.5/weather?"
-        static let apiKey = "e20e931c0ab70e242dfb4693aab476da"
-    }
-    enum DailyWeatherForecast {
-        static let baseUrl = "https://api.openweathermap.org/data/2.5/forecast?"
-        static let apiKey = "e20e931c0ab70e242dfb4693aab476da"
-    }
+//    static let baseUrl = "https://api.openweathermap.org/data/2.5/forecast?"
+    static let baseUrl = "https://api.openweathermap.org/data/2.5/onecall?"
+    static let cityUrl = ""
+    static let apiKey = "45dabbdb66aec0432fada9cef5d62596"
+}
+enum StorageKey {
+    static let keyForWeatherForecast = "keyForWeatherForecast"
+    static let keyForLocation = "keyForLocation"
 }
 
