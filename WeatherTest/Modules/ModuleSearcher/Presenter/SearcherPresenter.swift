@@ -12,12 +12,9 @@ protocol SearcherPresenterInput {
 }
 
 protocol SearcherPresenterOuput: AnyObject {
-    func updateModel(with model: WeatherModel)
 }
 
-final class SearcherPresenterImp: SearcherPresenterInput, ModuleInput {
-    internal var model: WeatherModel?
-    
+final class SearcherPresenterImp: SearcherPresenterInput {
     weak var view: SearcherPresenterOuput?
     var interactor: SearcherInteractorInput!
     var router: SearcherRouterInput!
@@ -27,18 +24,12 @@ final class SearcherPresenterImp: SearcherPresenterInput, ModuleInput {
         interactor.didChooseCityFromSearcher(city: city)
     }
     func dismissSearcher() {
-        router.dismissSearcher(ouput: self)
+        router.dismissSearcher()
     }
 }
 
 extension SearcherPresenterImp: SearcherInteractorOuput {
     func updateModel(with model: WeatherModel) {
-        view?.updateModel(with: model)
         ouput?.didUpdateModel(model: model)
-        print(model.city)
-    }
-}
-extension SearcherPresenterImp: ModuleOuput {
-    func didUpdateModel(model: WeatherModel) {
     }
 }

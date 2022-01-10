@@ -165,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				5F7C6876278B7AA100C6B113 /* View */,
-				5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */,
 				5F7C6875278B7A9E00C6B113 /* Presenter */,
 				5F7C6874278B7A9A00C6B113 /* Interactor */,
 				5F7C6873278B7A9600C6B113 /* Router */,
@@ -417,6 +416,7 @@
 		5F7C6876278B7AA100C6B113 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

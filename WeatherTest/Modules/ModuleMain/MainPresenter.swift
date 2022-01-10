@@ -33,7 +33,7 @@ final class MainPresenterImp: MainPresenterInput, ModuleInput {
         loadWeather()
     }
     func showSearcherScreen() {
-        router.showSearcherScreen()
+        router.showSearcherScreen(ouput: self)
     }
     private func loadWeather() {
         guard let model = model else { return }
@@ -42,7 +42,7 @@ final class MainPresenterImp: MainPresenterInput, ModuleInput {
     
     private func updateModel(with model: WeatherModel) {
         self.model = model
-        output?.didUpdateModel(model: model)
+        interactor.loadWeatherForecast(with: model)
     }
 }
 extension MainPresenterImp: MainInteractorOuput {
@@ -53,5 +53,6 @@ extension MainPresenterImp: MainInteractorOuput {
 extension MainPresenterImp: ModuleOuput {
     func didUpdateModel(model: WeatherModel) {
         updateModel(with: model)
+        
     }
 }

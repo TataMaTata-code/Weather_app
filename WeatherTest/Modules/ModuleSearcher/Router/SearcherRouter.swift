@@ -8,13 +8,14 @@
 import UIKit
 
 protocol SearcherRouterInput {
-    func dismissSearcher(ouput: ModuleOuput)
+    func dismissSearcher()
 }
 
 final class SearcherRouterImp: SearcherRouterInput {
+    
     weak var view: UIViewController?
     
-    func dismissSearcher(ouput: ModuleOuput) {
+    func dismissSearcher() {
         guard let view = view else { return }
         view.navigationController?.popToRootViewController(animated: true)
     }
