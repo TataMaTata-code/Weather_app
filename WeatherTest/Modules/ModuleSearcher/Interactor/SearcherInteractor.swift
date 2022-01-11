@@ -18,18 +18,16 @@ protocol SearcherInteractorOuput: AnyObject {
 final class SearcherInteractorImp: SearcherInteractorInput {
     weak var ouput: SearcherInteractorOuput?
     
-    var weatherDataService: WeatherDataService = WeatherDataServiceImp()
-    var locationService: LocationService = LocationServiceImp()
+    var weatherDataService: WeatherDataService!
+    var locationService: LocationService!
     
     func didChooseCityFromSearcher(city: String) {
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(city) { [weak self] coordinate, error in
-            DispatchQueue.main.async { [weak self] in
-                guard let location = coordinate?.first?.location else { return }
-                self?.locationService.geoCodingCoordinates(currentLocation: location) { [weak self] city, lat, long in
-                    let model = WeatherModel(city: city, lat: lat, long: long)
-                    self?.ouput?.updateModel(with: model)
-                }
+        locationService.geoCodingAddress(city: city) { [weak self] location in
+            self?.locationService.geoCodingCoordinates(currentLocation: location) { [weak self] city, lat, long in
+                print(city)
+                let model = WeatherModel(city: city, lat: lat, long: long)
+                self?.ouput?.updateModel(with: model)
+                
             }
         }
     }

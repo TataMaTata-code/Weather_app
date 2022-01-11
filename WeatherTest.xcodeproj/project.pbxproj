@@ -34,7 +34,7 @@
 		5F5915CC274A44BC00EE8C05 /* UIView+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */; };
 		5F5915CE274A586D00EE8C05 /* UIImage+ExstensionGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */; };
 		5F5915D8274B00E400EE8C05 /* SearcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */; };
-		5F7C6863278B02F700C6B113 /* WeatherHourlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F7C6862278B02F700C6B113 /* WeatherHourlyTableViewCell.xib */; };
+		5F6E8531278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F6E8530278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib */; };
 		5F7C6867278B03FC00C6B113 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C6866278B03FC00C6B113 /* MainViewController.swift */; };
 		5F7C686B278B099800C6B113 /* DailyWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C6869278B099800C6B113 /* DailyWeatherTableViewCell.swift */; };
 		5F7C686C278B099800C6B113 /* DailyWeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F7C686A278B099800C6B113 /* DailyWeatherTableViewCell.xib */; };
@@ -92,7 +92,7 @@
 		5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+UIColor.swift"; sourceTree = "<group>"; };
 		5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ExstensionGif.swift"; sourceTree = "<group>"; };
 		5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherViewController.swift; sourceTree = "<group>"; };
-		5F7C6862278B02F700C6B113 /* WeatherHourlyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WeatherHourlyTableViewCell.xib; path = "../../../../../../Projects/WeatherTest/WeatherTest/TableView Cells/Xib/WeatherHourlyTableViewCell.xib"; sourceTree = "<group>"; };
+		5F6E8530278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherHourlyTableViewCell.xib; sourceTree = "<group>"; };
 		5F7C6866278B03FC00C6B113 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5F7C6869278B099800C6B113 /* DailyWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		5F7C686A278B099800C6B113 /* DailyWeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyWeatherTableViewCell.xib; sourceTree = "<group>"; };
@@ -368,7 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3425582747B16900218A4B /* CurrentWeatherTableViewCell.xib */,
-				5F7C6862278B02F700C6B113 /* WeatherHourlyTableViewCell.xib */,
+				5F6E8530278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib */,
 				5F7C686A278B099800C6B113 /* DailyWeatherTableViewCell.xib */,
 			);
 			path = Xib;
@@ -559,8 +559,8 @@
 			files = (
 				5F34254B2747A08C00218A4B /* LaunchScreen.storyboard in Resources */,
 				5F3425482747A08C00218A4B /* Assets.xcassets in Resources */,
-				5F7C6863278B02F700C6B113 /* WeatherHourlyTableViewCell.xib in Resources */,
 				5F34255A2747B16A00218A4B /* CurrentWeatherTableViewCell.xib in Resources */,
+				5F6E8531278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib in Resources */,
 				5F7C686C278B099800C6B113 /* DailyWeatherTableViewCell.xib in Resources */,
 				5F3425462747A08A00218A4B /* Main.storyboard in Resources */,
 			);

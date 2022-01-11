@@ -19,11 +19,19 @@ class MainAssembly {
         let interactor = MainInteractorImp()
         let router = MainRouterImp()
         
+        let locationService = LocationServiceImp()
+        let weatherService = WeatherDataServiceImp()
+        let storageService = SharedStorageImp()
+        
         presenter.router = router
         presenter.interactor = interactor
         presenter.view = controller
         
         interactor.output = presenter
+        interactor.locationService = locationService
+        interactor.weatherService = weatherService
+        interactor.storageService = storageService
+        
         router.view = controller
         controller.presenter = presenter
         

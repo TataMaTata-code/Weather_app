@@ -9,6 +9,7 @@ import CoreLocation
 
 protocol LocationService {
     func geoCodingCoordinates(currentLocation: CLLocation, completion: @escaping (String, CLLocationDegrees, CLLocationDegrees) -> ())
+    func geoCodingAddress(city: String, completion: @escaping (CLLocation) -> ())
 }
 
 //MARK: - Implementation
@@ -32,5 +33,13 @@ final class LocationServiceImp: LocationService {
             }
         }
     }
-    
+    func geoCodingAddress(city: String, completion: @escaping (CLLocation) -> ()) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(city) { coordinate, error in
+            DispatchQueue.main.async {
+                guard let location = coordinate?.first?.location else { return }
+                completion(location)
+            }
+        }
+    }
 }

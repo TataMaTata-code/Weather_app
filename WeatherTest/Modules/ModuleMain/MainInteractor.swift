@@ -25,9 +25,9 @@ protocol MainInteractorOuput: AnyObject {
 final class MainInteractorImp: NSObject, MainInteractorInput {
     weak var output: MainInteractorOuput?
     
-    let locationService: LocationService = LocationServiceImp()
-    let weatherService: WeatherDataService = WeatherDataServiceImp()
-    let storageService: SharedStorage = SharedStorageImp()
+    var locationService: LocationService!
+    var weatherService: WeatherDataService!
+    var storageService: SharedStorage!
     
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
