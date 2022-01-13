@@ -24,7 +24,6 @@ final class SearcherInteractorImp: SearcherInteractorInput {
     func didChooseCityFromSearcher(city: String) {
         locationService.geoCodingAddress(city: city) { [weak self] location in
             self?.locationService.geoCodingCoordinates(currentLocation: location) { [weak self] city, lat, long in
-                print(city)
                 let model = WeatherModel(city: city, lat: lat, long: long)
                 self?.ouput?.updateModel(with: model)
                 

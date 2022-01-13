@@ -7,12 +7,12 @@
 import Foundation
 
 protocol DateFormatterService {
-    func dateFormater(with entity: MainEntity, indexPath: IndexPath) -> String
+    func dateFormater(dt: Float) -> String
 }
 
 final class DateFormatterServiceImp: DateFormatterService {
-    func dateFormater(with entity: MainEntity, indexPath: IndexPath) -> String {
-        let date = NSDate(timeIntervalSince1970: TimeInterval(entity.daily[indexPath.row].dt))
+    func dateFormater(dt: Float) -> String {
+        let date = NSDate(timeIntervalSince1970: TimeInterval(dt))
         
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "E"

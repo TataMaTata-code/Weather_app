@@ -45,8 +45,8 @@ class MainViewController: UIViewController {
     }
     
     private func setDayOfWeek(indexPath: IndexPath) -> String {
-        guard let mainEntity = mainEntity else { return "" }
-        let date = dateFormatterService.dateFormater(with: mainEntity, indexPath: indexPath)
+        guard let dt = mainEntity?.daily[indexPath.row].dt else { return "" }
+        let date = dateFormatterService.dateFormater(dt: dt)
         return date
     }
     
