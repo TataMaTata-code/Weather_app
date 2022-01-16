@@ -45,9 +45,9 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     private func configEntity(with mapped: WeatherResponse, model: WeatherModel) {
         let city = model.city
         let temp = " \(Int(mapped.current.temp))°"
-        let wind = "Wind: \(Int(mapped.current.wind_speed)) m/s"
-        let humidity = "Humidity: \(Int(mapped.current.humidity))%"
-        let descript = mapped.current.weather.first?.description ?? ""
+        let wind = " : \(Int(mapped.current.wind_speed)) m/s"
+        let humidity = " : \(Int(mapped.current.humidity))%"
+        let descript = mapped.current.weather.first?.main ?? ""
         let entity = MainEntity(city: city,
                                 temp: temp,
                                 descript: descript,

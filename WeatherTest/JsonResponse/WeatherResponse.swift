@@ -18,6 +18,7 @@ struct Current: Codable {
 }
 struct Weather: Codable {
     let description: String
+    let main: String
     let icon: String
 }
 struct Hourly: Codable {

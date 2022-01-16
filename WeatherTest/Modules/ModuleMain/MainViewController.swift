@@ -109,7 +109,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             cell.backgroundColor = .clear
             cell.cityName.text = mainEntity?.city
             cell.temperatureLabel.text = mainEntity?.temp
-            cell.descriptionWeather.text = ""
+            cell.descriptionWeather.text = mainEntity?.descript
             cell.humidityLabel.text = mainEntity?.humidity
             cell.windLabel.text = mainEntity?.wind
             

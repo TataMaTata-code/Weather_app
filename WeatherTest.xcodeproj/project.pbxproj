@@ -39,6 +39,8 @@
 		5F7C687A278B7AFB00C6B113 /* SearcherInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C6879278B7AFB00C6B113 /* SearcherInteractor.swift */; };
 		5F7C687C278B7B0B00C6B113 /* SearcherRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C687B278B7B0B00C6B113 /* SearcherRouter.swift */; };
 		5F7C687E278B7B1C00C6B113 /* SearcherAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C687D278B7B1C00C6B113 /* SearcherAssembly.swift */; };
+		5FC26EF927943A07008179FE /* CurrentWeatherDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC26EF727943A07008179FE /* CurrentWeatherDescriptionTableViewCell.swift */; };
+		5FC26EFA27943A07008179FE /* CurrentWeatherDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FC26EF827943A07008179FE /* CurrentWeatherDescriptionTableViewCell.xib */; };
 		5FDCD36727491C81001FBD39 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCD36627491C81001FBD39 /* WeatherResponse.swift */; };
 		5FEAADA3276F3FDD00899808 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEAADA2276F3FDD00899808 /* WeatherModel.swift */; };
 		5FEAADB02770BB3300899808 /* WeatherTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEAADAF2770BB3300899808 /* WeatherTestTests.swift */; };
@@ -92,6 +94,8 @@
 		5F7C6879278B7AFB00C6B113 /* SearcherInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherInteractor.swift; sourceTree = "<group>"; };
 		5F7C687B278B7B0B00C6B113 /* SearcherRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherRouter.swift; sourceTree = "<group>"; };
 		5F7C687D278B7B1C00C6B113 /* SearcherAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherAssembly.swift; sourceTree = "<group>"; };
+		5FC26EF727943A07008179FE /* CurrentWeatherDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		5FC26EF827943A07008179FE /* CurrentWeatherDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentWeatherDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		5FDCD36627491C81001FBD39 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		5FEAADA2276F3FDD00899808 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		5FEAADAD2770BB3200899808 /* WeatherTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3425572747B16900218A4B /* CurrentWeatherTableViewCell.swift */,
+				5FC26EF727943A07008179FE /* CurrentWeatherDescriptionTableViewCell.swift */,
 				5F34255E2747CE5300218A4B /* WeatherHourlyTableViewCell.swift */,
 				5F7C6869278B099800C6B113 /* DailyWeatherTableViewCell.swift */,
 				5F34255D2747CE1E00218A4B /* Xib */,
@@ -297,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3425582747B16900218A4B /* CurrentWeatherTableViewCell.xib */,
+				5FC26EF827943A07008179FE /* CurrentWeatherDescriptionTableViewCell.xib */,
 				5F6E8530278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib */,
 				5F7C686A278B099800C6B113 /* DailyWeatherTableViewCell.xib */,
 			);
@@ -487,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F34254B2747A08C00218A4B /* LaunchScreen.storyboard in Resources */,
+				5FC26EFA27943A07008179FE /* CurrentWeatherDescriptionTableViewCell.xib in Resources */,
 				5F3425482747A08C00218A4B /* Assets.xcassets in Resources */,
 				5F34255A2747B16A00218A4B /* CurrentWeatherTableViewCell.xib in Resources */,
 				5F6E8531278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib in Resources */,
@@ -578,6 +585,7 @@
 				5F5915D8274B00E400EE8C05 /* SearcherViewController.swift in Sources */,
 				5F7C687A278B7AFB00C6B113 /* SearcherInteractor.swift in Sources */,
 				5F196FC12789CA1B000C9822 /* WeatherDataService.swift in Sources */,
+				5FC26EF927943A07008179FE /* CurrentWeatherDescriptionTableViewCell.swift in Sources */,
 				5F5915CE274A586D00EE8C05 /* UIImage+ExstensionGif.swift in Sources */,
 				5F0D985A2749716A00CFD9B2 /* Parameters.swift in Sources */,
 				5F196FB02789B965000C9822 /* MainInteractor.swift in Sources */,
