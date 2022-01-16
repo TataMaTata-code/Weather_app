@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     var presenter: MainPresenterInput!
     
     var mainEntity: MainEntity?
+    let iconsDic = MainIconsEntity()
     
     let dateFormatterService: DateFormatterService = DateFormatterServiceImp()
         
@@ -44,16 +45,37 @@ class MainViewController: UIViewController {
         
     }
     
+    private func setHourlyCells(cell: WeekCollectionViewCell, indexPath: IndexPath) {
+        let dt = mainEntity?.hourly[indexPath.row].dt ?? 0
+        let date = dateFormatterService.dateFormater(dt: dt, format: "H")
+        let iconName = mainEntity?.hourly[indexPath.row].weather.first?.icon
+        
+        for icons in iconsDic.iconsDic {
+            if iconName == icons.key {
+                let icon = UIImage(systemName: icons.value)?.withRenderingMode(.alwaysOriginal)
+                cell.iconWeather.image = icon
+            }
+        }
+        cell.hours.text = date
+        cell.temperature.text = "\(Int(mainEntity?.hourly[indexPath.row].temp ?? 0))°"
+        
+    }
+    
     private func setDayOfWeek(indexPath: IndexPath) -> String {
-        guard let dt = mainEntity?.daily[indexPath.row].dt else { return "" }
-        let date = dateFormatterService.dateFormater(dt: dt)
+        guard let dt = (mainEntity?.daily[indexPath.row].dt) else { return "" }
+        let date = dateFormatterService.dateFormater(dt: dt, format: "E")
         return date
     }
     
     private func setIcon(indexPath: IndexPath) -> UIImage? {
         let iconName = mainEntity?.daily[indexPath.row].weather.first?.icon ?? ""
-        let icon = UIImage(named: iconName)
-        return icon
+        for icons in iconsDic.iconsDic {
+            if iconName == icons.key {
+                let icon = UIImage(systemName: icons.value)?.withRenderingMode(.alwaysOriginal)
+                return icon
+            }
+        }
+        return UIImage(named: "")
     }
     
     private func setMinTemp(indexPath: IndexPath) -> String {
@@ -87,8 +109,18 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             cell.backgroundColor = .clear
             cell.cityName.text = mainEntity?.city
             cell.temperatureLabel.text = mainEntity?.temp
+            cell.descriptionWeather.text = ""
             cell.humidityLabel.text = mainEntity?.humidity
             cell.windLabel.text = mainEntity?.wind
+            
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherHourlyTableViewCell.identifier, for: indexPath) as? WeatherHourlyTableViewCell else { return UITableViewCell() }
+            cell.backgroundColor = .clear
+            cell.setTemp = { [weak self] cell, index in
+                self?.setHourlyCells(cell: cell, indexPath: index)
+            }
+            cell.collectionView.reloadData()
             
             return cell
         default:
@@ -107,5 +139,6 @@ extension MainViewController: MainPresenterOutput {
     func setState(with entity: MainEntity) {
         mainEntity = entity
         tableView.reloadData()
+        
     }
 }

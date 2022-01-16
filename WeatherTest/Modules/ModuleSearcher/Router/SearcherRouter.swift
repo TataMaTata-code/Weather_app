@@ -17,6 +17,6 @@ final class SearcherRouterImp: SearcherRouterInput {
     
     func dismissSearcher() {
         guard let view = view else { return }
-        view.navigationController?.popToRootViewController(animated: true)
+        view.dismiss(animated: true)
     }
 }

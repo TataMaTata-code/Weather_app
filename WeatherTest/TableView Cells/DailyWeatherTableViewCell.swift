@@ -19,7 +19,12 @@ class DailyWeatherTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        configLabel()
+    }
+    
+    private func configLabel() {
+        minTempLabel.textColor = .white
+        minTempLabel.alpha = 0.5
     }
     
     static func nib() -> UINib {

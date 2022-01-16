@@ -53,6 +53,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
                                 descript: descript,
                                 humidity: humidity,
                                 wind: wind,
+                                hourly: mapped.hourly,
                                 daily: mapped.daily)
         if !entity.city.isEmpty {
             saveEntity(entity: entity)

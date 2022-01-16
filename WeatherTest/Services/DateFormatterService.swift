@@ -7,15 +7,15 @@
 import Foundation
 
 protocol DateFormatterService {
-    func dateFormater(dt: Float) -> String
+    func dateFormater(dt: Float, format: String) -> String
 }
 
 final class DateFormatterServiceImp: DateFormatterService {
-    func dateFormater(dt: Float) -> String {
+    func dateFormater(dt: Float, format: String) -> String {
         let date = NSDate(timeIntervalSince1970: TimeInterval(dt))
         
         let dayTimePeriodFormatter = DateFormatter()
-        dayTimePeriodFormatter.dateFormat = "E"
+        dayTimePeriodFormatter.dateFormat = format
         
         let dateString = dayTimePeriodFormatter.string(from: date as Date)
         return dateString

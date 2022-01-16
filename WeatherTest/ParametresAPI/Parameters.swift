@@ -14,6 +14,6 @@ enum Parameters {
     static let metric = "metric"
     static let appid = "appid"
     static let exclude = "exclude"
-    static let exclusion = "minutely,hourly"
+    static let exclusion = "minutely"
     
 }

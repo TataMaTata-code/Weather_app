@@ -43,6 +43,7 @@ final class WeatherDataServiceImp: WeatherDataService {
                                   URLQueryItem(name: Parameters.exclude, value: Parameters.exclusion),
                                   URLQueryItem(name: Parameters.units, value: Parameters.metric),
                                   URLQueryItem(name: Parameters.appid, value: Constants.apiKey)]
+        print(components?.url)
         return components?.url
     }
 }

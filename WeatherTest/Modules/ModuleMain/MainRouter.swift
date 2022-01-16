@@ -18,6 +18,6 @@ final class MainRouterImp: MainRouterInput {
     
     func showSearcherScreen(ouput: ModuleOuput) {
         guard let view = view, let controller = SearcherAssembly.configSearcherModule(output: ouput) else { return }
-        view.navigationController?.pushViewController(controller, animated: true)
+        view.present(controller, animated: true)
     }
 }

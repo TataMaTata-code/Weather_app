@@ -7,6 +7,7 @@
 
 struct WeatherResponse: Codable {
     let current: Current
+    let hourly: [Hourly]
     let daily: [Daily]
 }
 struct Current: Codable {
@@ -17,6 +18,14 @@ struct Current: Codable {
 }
 struct Weather: Codable {
     let description: String
+    let icon: String
+}
+struct Hourly: Codable {
+    let dt: Float
+    let temp: Float
+    let weather: [WeatherHourly]
+}
+struct WeatherHourly: Codable {
     let icon: String
 }
 struct Daily: Codable {
