@@ -74,7 +74,6 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     func loadWeatherForecast(with model: WeatherModel) {
         weatherService.loadWeatherData(lat: model.lat, long: model.long) { [weak self] mapped in
             self?.configEntity(with: mapped, model: model)
-            
         }
     }
     
@@ -82,6 +81,8 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         if isConnected == false {
             guard let entity = getEntity() else { return }
             output?.updateEntity(entity: entity)
+            output?.updateBackgroud(fileName: backgroudConfigService.backgroudAnimation(entity: entity),
+                                    color: backgroudConfigService.backgroudColor(entity: entity))
         }
     }
     
