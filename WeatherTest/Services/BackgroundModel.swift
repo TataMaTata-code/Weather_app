@@ -14,10 +14,10 @@ struct WeatherNodesDictionary {
                       "02d": "SunParticle",
                       "02n": "StarsParticle",
                       
-                      "03d": " ",
+                      "03d": "CloudsParticle",
                       "03n": "StarsParticle",
                       
-                      "04d": " ",
+                      "04d": "CloudsParticle",
                       "04n": "StarsParticle",
                       
                       "09d": "RainParticle",

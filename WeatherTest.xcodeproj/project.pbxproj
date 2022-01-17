@@ -39,6 +39,7 @@
 		5F7C687A278B7AFB00C6B113 /* SearcherInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C6879278B7AFB00C6B113 /* SearcherInteractor.swift */; };
 		5F7C687C278B7B0B00C6B113 /* SearcherRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C687B278B7B0B00C6B113 /* SearcherRouter.swift */; };
 		5F7C687E278B7B1C00C6B113 /* SearcherAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C687D278B7B1C00C6B113 /* SearcherAssembly.swift */; };
+		5F7D669B27957E9C004A2EA8 /* CloudsParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F7D669A27957E9C004A2EA8 /* CloudsParticle.sks */; };
 		5FDCD36727491C81001FBD39 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCD36627491C81001FBD39 /* WeatherResponse.swift */; };
 		5FEAADA3276F3FDD00899808 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEAADA2276F3FDD00899808 /* WeatherModel.swift */; };
 		5FEAADB02770BB3300899808 /* WeatherTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEAADAF2770BB3300899808 /* WeatherTestTests.swift */; };
@@ -100,6 +101,7 @@
 		5F7C6879278B7AFB00C6B113 /* SearcherInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherInteractor.swift; sourceTree = "<group>"; };
 		5F7C687B278B7B0B00C6B113 /* SearcherRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherRouter.swift; sourceTree = "<group>"; };
 		5F7C687D278B7B1C00C6B113 /* SearcherAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherAssembly.swift; sourceTree = "<group>"; };
+		5F7D669A27957E9C004A2EA8 /* CloudsParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CloudsParticle.sks; sourceTree = "<group>"; };
 		5FDCD36627491C81001FBD39 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		5FEAADA2276F3FDD00899808 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		5FEAADAD2770BB3200899808 /* WeatherTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,6 +414,7 @@
 				5FF2F8A127948A5D0000A18D /* RainParticle.sks */,
 				5FF2F89D2794833F0000A18D /* SnowParticle.sks */,
 				5FF2F8BF2794E4970000A18D /* StarsParticle.sks */,
+				5F7D669A27957E9C004A2EA8 /* CloudsParticle.sks */,
 				5FF2F89E2794833F0000A18D /* Assets.xcassets */,
 			);
 			path = SpriteKitNodes;
@@ -535,6 +538,7 @@
 				5F34255A2747B16A00218A4B /* CurrentWeatherTableViewCell.xib in Resources */,
 				5F6E8531278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib in Resources */,
 				5FF2F8A227948A5D0000A18D /* RainParticle.sks in Resources */,
+				5F7D669B27957E9C004A2EA8 /* CloudsParticle.sks in Resources */,
 				5F7C686C278B099800C6B113 /* DailyWeatherTableViewCell.xib in Resources */,
 				5FF2F8A02794833F0000A18D /* Assets.xcassets in Resources */,
 				5F3425462747A08A00218A4B /* Main.storyboard in Resources */,

@@ -50,7 +50,8 @@ class MainViewController: UIViewController {
         skView.presentScene(scene)
         
         guard let node = SKSpriteNode(fileNamed: fileName) else { return }
-        node.position = CGPoint(x: view.frame.width + 120, y: view.frame.height)
+        node.position = CGPoint(x: view.frame.width + 100,
+                                y: view.frame.height + 30)
         scene.backgroundColor = UIColor(hex: color) ?? .white
         
         scene.addChild(node)
