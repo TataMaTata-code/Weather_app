@@ -11,6 +11,8 @@ struct WeatherResponse: Codable {
     let daily: [Daily]
 }
 struct Current: Codable {
+    let sunrise: Float
+    let sunset: Float
     let temp: Float
     let humidity: Float
     let wind_speed: Float

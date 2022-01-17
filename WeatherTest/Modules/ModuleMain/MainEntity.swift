@@ -7,10 +7,13 @@
 
 struct MainEntity: Codable {
     var city: String
+    var icon: String
     var temp: String
     var descript: String
     var humidity: String
     var wind: String
+    var sunrise: String
+    var sunset: String
     var hourly: [Hourly]
     var daily: [Daily]
 }

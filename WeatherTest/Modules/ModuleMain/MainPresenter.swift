@@ -15,6 +15,7 @@ protocol MainPresenterInput {
 
 protocol MainPresenterOutput: AnyObject {
     func setState(with entity: MainEntity)
+    func setBackgroud(fileName: String, color: String)
 }
 
 //MARK: - Implementation
@@ -48,6 +49,9 @@ final class MainPresenterImp: MainPresenterInput, ModuleInput {
 extension MainPresenterImp: MainInteractorOuput {
     func updateEntity(entity: MainEntity) {
         view?.setState(with: entity)
+    }
+    func updateBackgroud(fileName: String, color: String) {
+        view?.setBackgroud(fileName: fileName, color: color)
     }
 }
 extension MainPresenterImp: ModuleOuput {

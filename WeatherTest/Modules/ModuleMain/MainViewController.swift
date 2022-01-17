@@ -6,18 +6,27 @@
 //
 
 import UIKit
+import SpriteKit
 import SnapKit
 
 class MainViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+    
+    let tableView = UITableView()
+    let buttonShowSearcher = UIButton()
     
     var presenter: MainPresenterInput!
     
     var mainEntity: MainEntity?
     let iconsDic = MainIconsEntity()
     
-    let dateFormatterService: DateFormatterService = DateFormatterServiceImp()
+    var dateFormatterService: DateFormatterService!
+    var backgroudViewService: BackgroudViewService!
+    
+    override func loadView() {
+        super.loadView()
+        prepareView()
+        
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +34,44 @@ class MainViewController: UIViewController {
         config()
     }
     
+    private func prepareView() {
+        let skView = SKView(frame: view.frame)
+        view = skView
+    }
+    
     private func config() {
-        gradientView()
         configTableView()
+        configButton()
+    }
+    
+    private func configBackgroud(fileName: String, color: String) {
+        var skView: SKView { view as! SKView }
+        let scene = SKScene(size: view.frame.size)
+        skView.presentScene(scene)
+        
+        guard let node = SKSpriteNode(fileNamed: fileName) else { return }
+        node.position = CGPoint(x: view.frame.width + 120, y: view.frame.height)
+        scene.backgroundColor = UIColor(hex: color) ?? .white
+        
+        scene.addChild(node)
     }
     
     private func configTableView() {
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.allowsSelection = false
+        
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview()
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CurrentWeatherTableViewCell.nib(), forCellReuseIdentifier: CurrentWeatherTableViewCell.identifier)
@@ -38,11 +79,20 @@ class MainViewController: UIViewController {
         tableView.register(DailyWeatherTableViewCell.nib(), forCellReuseIdentifier: DailyWeatherTableViewCell.indetifier)
     }
     
-    private func gradientView() {
-        guard let firstColor = UIColor(hex: "#6190e8") else { return }
-        guard let secondColor = UIColor(hex: "#a7bfe8") else { return }
-        view.addGradientAxial(firstColor: firstColor, secondColor: secondColor)
+    private func configButton() {
+        let plusIcon = UIImage(systemName: "plus")
         
+        view.addSubview(buttonShowSearcher)
+
+        buttonShowSearcher.setBackgroundImage(plusIcon, for: .normal)
+        buttonShowSearcher.tintColor = .white
+        buttonShowSearcher.addTarget(self, action: #selector(actionShowSearchScreen), for: .touchUpInside)
+        
+        buttonShowSearcher.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.size.equalTo(25)
+            make.right.equalToSuperview().inset(35)
+        }
     }
     
     private func setHourlyCells(cell: WeekCollectionViewCell, indexPath: IndexPath) {
@@ -91,7 +141,7 @@ class MainViewController: UIViewController {
 //    MARK: - Actions
     
     
-    @IBAction func actionShowSearchScreen(_ sender: Any) {
+    @objc func actionShowSearchScreen() {
         presenter.showSearcherScreen()
     }
 }
@@ -112,6 +162,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             cell.descriptionWeather.text = mainEntity?.descript
             cell.humidityLabel.text = mainEntity?.humidity
             cell.windLabel.text = mainEntity?.wind
+            cell.sunriseLabel.text = mainEntity?.sunrise
+            cell.sunsetLabel.text = mainEntity?.sunset
             
             return cell
         case 1:
@@ -139,6 +191,8 @@ extension MainViewController: MainPresenterOutput {
     func setState(with entity: MainEntity) {
         mainEntity = entity
         tableView.reloadData()
-        
+    }
+    func setBackgroud(fileName: String, color: String) {
+        configBackgroud(fileName: fileName, color: color)
     }
 }

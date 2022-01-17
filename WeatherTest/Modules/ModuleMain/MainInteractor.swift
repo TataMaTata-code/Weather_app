@@ -6,7 +6,6 @@
 //
 
 
-import UIKit
 import CoreLocation
 
 protocol MainInteractorInput {
@@ -18,6 +17,7 @@ protocol MainInteractorInput {
 
 protocol MainInteractorOuput: AnyObject {
     func updateEntity(entity: MainEntity)
+    func updateBackgroud(fileName: String, color: String)
 }
 
 //MARK: - Implementation
@@ -28,6 +28,8 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     var locationService: LocationService!
     var weatherService: WeatherDataService!
     var storageService: SharedStorage!
+    var dateFormatterService: DateFormatterService!
+    var backgroudConfigService: BackgroudViewService!
     
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -44,26 +46,35 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
 
     private func configEntity(with mapped: WeatherResponse, model: WeatherModel) {
         let city = model.city
-        let temp = " \(Int(mapped.current.temp))°"
+        let icon = mapped.current.weather.first?.icon ?? ""
+        let temp = "\(Int(mapped.current.temp))°"
         let wind = " : \(Int(mapped.current.wind_speed)) m/s"
         let humidity = " : \(Int(mapped.current.humidity))%"
         let descript = mapped.current.weather.first?.main ?? ""
+        let sunrise = dateFormatterService.dateFormater(dt: mapped.current.sunrise, format: " HH:mm")
+        let sunset = dateFormatterService.dateFormater(dt: mapped.current.sunset, format: " HH:mm")
         let entity = MainEntity(city: city,
+                                icon: icon,
                                 temp: temp,
                                 descript: descript,
                                 humidity: humidity,
                                 wind: wind,
+                                sunrise: sunrise,
+                                sunset: sunset,
                                 hourly: mapped.hourly,
                                 daily: mapped.daily)
         if !entity.city.isEmpty {
             saveEntity(entity: entity)
             output?.updateEntity(entity: entity)
+            output?.updateBackgroud(fileName: backgroudConfigService.backgroudAnimation(entity: entity),
+                                    color: backgroudConfigService.backgroudColor(entity: entity))
         }
     }
     
     func loadWeatherForecast(with model: WeatherModel) {
         weatherService.loadWeatherData(lat: model.lat, long: model.long) { [weak self] mapped in
             self?.configEntity(with: mapped, model: model)
+            
         }
     }
     
