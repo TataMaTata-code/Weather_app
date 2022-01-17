@@ -372,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				5FEAADA2276F3FDD00899808 /* WeatherModel.swift */,
+				5FF2F8AF27949D120000A18D /* BackgroundModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -384,7 +385,6 @@
 				5F7C686D278B372400C6B113 /* DateFormatterService.swift */,
 				5F7C686F278B567500C6B113 /* SharedStorage.swift */,
 				5FF2F8AD279498EF0000A18D /* BackgroudViewService.swift */,
-				5FF2F8AF27949D120000A18D /* BackgroundModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
