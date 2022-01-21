@@ -11,6 +11,10 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
+    deinit {
+        print("mainviewcontroller")
+    }
+    
     let tableView = UITableView()
     let buttonShowSearcher = UIButton()
     
@@ -20,7 +24,6 @@ class MainViewController: UIViewController {
     let iconsDic = MainIconsEntity()
     
     var dateFormatterService: DateFormatterService!
-    var backgroudViewService: BackgroudViewService!
     
     override func loadView() {
         super.loadView()
@@ -176,6 +179,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             cell.collectionView.reloadData()
             
             return cell
+            
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DailyWeatherTableViewCell.indetifier, for: indexPath) as? DailyWeatherTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = .clear

@@ -28,15 +28,17 @@ class MainAssembly {
         presenter.view = controller
         
         interactor.output = presenter
+        
         interactor.locationService = locationService
         interactor.weatherService = weatherService
         interactor.storageService = storageService
         interactor.dateFormatterService = dateFormatterService
         interactor.backgroudConfigService = backgroudViewService
         
-        router.view = controller
-        controller.presenter = presenter
         controller.dateFormatterService = dateFormatterService
+
+        controller.presenter = presenter
+        router.view = controller
         
         return controller
     }

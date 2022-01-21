@@ -49,35 +49,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-4e-q8X">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-4e-q8X">
                                 <rect key="frame" x="0.0" y="44" width="414" height="51"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search" textContentType="address-level2"/>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XnD-dJ-Mjb">
+                                <rect key="frame" x="10" y="95" width="394" height="801"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9tG-hI-ZJX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="XnD-dJ-Mjb" firstAttribute="leading" secondItem="9tG-hI-ZJX" secondAttribute="leading" constant="10" id="29L-od-Q6E"/>
+                            <constraint firstItem="XnD-dJ-Mjb" firstAttribute="top" secondItem="pdW-4e-q8X" secondAttribute="bottom" id="2O3-BZ-xm4"/>
                             <constraint firstItem="pdW-4e-q8X" firstAttribute="trailing" secondItem="9tG-hI-ZJX" secondAttribute="trailing" id="bHS-oL-y3j"/>
                             <constraint firstItem="pdW-4e-q8X" firstAttribute="top" secondItem="9tG-hI-ZJX" secondAttribute="top" id="dDI-8t-eIR"/>
+                            <constraint firstAttribute="bottom" secondItem="XnD-dJ-Mjb" secondAttribute="bottom" id="hZI-th-TJG"/>
                             <constraint firstItem="pdW-4e-q8X" firstAttribute="leading" secondItem="9tG-hI-ZJX" secondAttribute="leading" id="p6d-nU-LS7"/>
+                            <constraint firstItem="XnD-dJ-Mjb" firstAttribute="trailing" secondItem="9tG-hI-ZJX" secondAttribute="trailing" constant="-10" id="pCW-Q6-3sw"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="DTK-Jo-GnM" appends="YES" id="dJa-rr-PDt"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="searcher" destination="pdW-4e-q8X" id="LLP-TZ-gue"/>
+                        <outlet property="tableView" destination="XnD-dJ-Mjb" id="GhH-zG-egM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUf-2p-Zlv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="DTK-Jo-GnM">
-                    <connections>
-                        <action selector="swipeBack:" destination="FDQ-4F-tNx" id="d19-Xi-FFZ"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="743" y="80"/>
+            <point key="canvasLocation" x="742.02898550724649" y="79.6875"/>
         </scene>
     </scenes>
     <resources>

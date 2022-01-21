@@ -34,6 +34,8 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     
+    var dataService: DataService?
+    
     var entity: MainEntity?
         
     var isConnected = false
@@ -53,6 +55,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         let descript = mapped.current.weather.first?.main ?? ""
         let sunrise = dateFormatterService.dateFormater(dt: mapped.current.sunrise, format: " HH:mm")
         let sunset = dateFormatterService.dateFormater(dt: mapped.current.sunset, format: " HH:mm")
+        let feelsLike = "Feels like: \(Int(mapped.current.feels_like))°"
         let entity = MainEntity(city: city,
                                 icon: icon,
                                 temp: temp,
@@ -61,6 +64,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
                                 wind: wind,
                                 sunrise: sunrise,
                                 sunset: sunset,
+                                feelsLike: feelsLike,
                                 hourly: mapped.hourly,
                                 daily: mapped.daily)
         if !entity.city.isEmpty {
@@ -78,7 +82,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     }
     
     func checkConnection() {
-        if isConnected == false {
+        if !isConnected {
             guard let entity = getEntity() else { return }
             output?.updateEntity(entity: entity)
             output?.updateBackgroud(fileName: backgroudConfigService.backgroudAnimation(entity: entity),

@@ -44,7 +44,7 @@ extension WeatherHourlyTableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeekCollectionViewCell.identifier, for: indexPath) as? WeekCollectionViewCell else { return UICollectionViewCell() }
         cell.configCell()
         cell.backgroundColor = .clear
-        cell.addCornerRadius(contentView: cell, cornerRadius: 15, borderWidth: 0.1, color: .lightGray)
+        cell.addCornerRadius(contentView: cell, cornerRadius: 15, borderWidth: 0.05, color: .gray)
         setTemp?(cell, indexPath)
         
         return cell

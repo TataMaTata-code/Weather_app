@@ -26,24 +26,14 @@ final class MainPresenterImp: MainPresenterInput, ModuleInput {
     weak var view: MainPresenterOutput?
     var interactor: MainInteractorInput!
     var router: MainRouterInput!
-    var output: ModuleOuput?
     
     func viewIsReady() {
         interactor.locationAccess()
         interactor.checkConnection()
-        loadWeather()
-    }
-    func showSearcherScreen() {
-        router.showSearcherScreen(ouput: self)
-    }
-    private func loadWeather() {
-        guard let model = model else { return }
-        interactor.loadWeatherForecast(with: model)
     }
     
-    private func updateModel(with model: WeatherModel) {
-        self.model = model
-        interactor.loadWeatherForecast(with: model)
+    func showSearcherScreen() {
+        router.showSearcherScreen(ouput: self)
     }
 }
 extension MainPresenterImp: MainInteractorOuput {
@@ -56,6 +46,6 @@ extension MainPresenterImp: MainInteractorOuput {
 }
 extension MainPresenterImp: ModuleOuput {
     func didUpdateModel(model: WeatherModel) {
-        updateModel(with: model)
+        interactor.loadWeatherForecast(with: model)
     }
 }
