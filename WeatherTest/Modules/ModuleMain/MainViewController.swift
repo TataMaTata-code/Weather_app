@@ -28,7 +28,6 @@ class MainViewController: UIViewController {
     override func loadView() {
         super.loadView()
         prepareView()
-        
     }
         
     override func viewDidLoad() {

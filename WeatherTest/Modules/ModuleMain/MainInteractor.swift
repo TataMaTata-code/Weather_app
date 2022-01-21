@@ -37,7 +37,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     var dataService: DataService?
     
     var entity: MainEntity?
-        
+    
     var isConnected = false
     
     func locationAccess() {
@@ -45,7 +45,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-
+    
     private func configEntity(with mapped: WeatherResponse, model: WeatherModel) {
         let city = model.city
         let icon = mapped.current.weather.first?.icon ?? ""
@@ -55,7 +55,6 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         let descript = mapped.current.weather.first?.main ?? ""
         let sunrise = dateFormatterService.dateFormater(dt: mapped.current.sunrise, format: " HH:mm")
         let sunset = dateFormatterService.dateFormater(dt: mapped.current.sunset, format: " HH:mm")
-        let feelsLike = "Feels like: \(Int(mapped.current.feels_like))°"
         let entity = MainEntity(city: city,
                                 icon: icon,
                                 temp: temp,
@@ -64,15 +63,12 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
                                 wind: wind,
                                 sunrise: sunrise,
                                 sunset: sunset,
-                                feelsLike: feelsLike,
                                 hourly: mapped.hourly,
                                 daily: mapped.daily)
-        if !entity.city.isEmpty {
-            saveEntity(entity: entity)
-            output?.updateEntity(entity: entity)
-            output?.updateBackgroud(fileName: backgroudConfigService.backgroudAnimation(entity: entity),
-                                    color: backgroudConfigService.backgroudColor(entity: entity))
-        }
+        saveEntity(entity: entity)
+        output?.updateEntity(entity: entity)
+        output?.updateBackgroud(fileName: backgroudConfigService.backgroudAnimation(entity: entity),
+                                color: backgroudConfigService.backgroudColor(entity: entity))
     }
     
     func loadWeatherForecast(with model: WeatherModel) {
@@ -90,17 +86,25 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         }
     }
     
+    //MARK: - UserDefaults
+    
     private func saveEntity(entity: MainEntity) {
         let data = try? JSONEncoder().encode(entity)
-        storageService.setValue(key: StorageKey.keyForWeatherForecast, value: data)
+        storageService.setValue(key: StorageKey.keyForMainEntity, value: data)
     }
     
     private func getEntity() -> MainEntity? {
-        let newData = storageService.getValue(key: StorageKey.keyForWeatherForecast)
+        let newData = storageService.getValue(key: StorageKey.keyForMainEntity)
         let entity = try? JSONDecoder().decode(MainEntity.self, from: newData)
         return entity
     }
+    
+    private func saveModel(with model: WeatherModel) {
+        let data = try? JSONEncoder().encode(model)
+        storageService.setValue(key: StorageKey.keyForWeatherModel, value: data)
+    }
 }
+//MARK: - Extensions
 
 extension MainInteractorImp: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -108,9 +112,11 @@ extension MainInteractorImp: CLLocationManagerDelegate {
             self.currentLocation = locations.first ?? CLLocation()
             self.locationManager.stopUpdatingLocation()
             locationService.geoCodingCoordinates(currentLocation: currentLocation) { [weak self] city, lat, long in
+                self?.isConnected = true
+                
                 let newModel = WeatherModel(city: city, lat: lat, long: long)
                 self?.loadWeatherForecast(with: newModel)
-                self?.isConnected = true
+                self?.saveModel(with: newModel)
             }
         }
     }

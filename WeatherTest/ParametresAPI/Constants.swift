@@ -12,7 +12,11 @@ enum Constants {
     static let apiKey = "45dabbdb66aec0432fada9cef5d62596"
 }
 enum StorageKey {
-    static let keyForWeatherForecast = "keyForWeatherForecast"
+    static let keyForWeatherModel = "keyForWeatherModel"
+
     static let keyForLocation = "keyForLocation"
+    
+    static let keyForMainEntity = "keyForMainEntity"
+    static let keyForSearcherEntity = "keyForSearcherEntity"
 }
 

@@ -64,4 +64,3 @@ struct WeatherColorDictionary {
                       "50d": "#353D45",
                       "50n": "#262626"]
 }
-//262626

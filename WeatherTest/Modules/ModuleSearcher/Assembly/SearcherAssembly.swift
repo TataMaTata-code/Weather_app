@@ -19,6 +19,9 @@ class SearcherAssembly {
         let weatherDataService = WeatherDataServiceImp()
         let locationService = LocationServiceImp()
         let storageService = SharedStorageImp()
+        let backgroudConfigService = BackgroudViewServiceImp()
+        let weatherService = WeatherDataServiceImp()
+        let dateFormatter = DateFormatterServiceImp()
         
         presenter.interactor = interactor
         presenter.router = router
@@ -29,6 +32,9 @@ class SearcherAssembly {
         interactor.weatherDataService = weatherDataService
         interactor.locationService = locationService
         interactor.storageService = storageService
+        interactor.backgroudConfigService = backgroudConfigService
+        interactor.weatherService = weatherService
+        interactor.dateFormatter = dateFormatter
         
         controller.presenter = presenter
         router.view = controller

@@ -15,20 +15,19 @@ protocol LocationService {
 //MARK: - Implementation
 
 final class LocationServiceImp: LocationService {
-    var currentCity = ""
-
+    
     func geoCodingCoordinates(currentLocation: CLLocation, completion: @escaping (String, CLLocationDegrees, CLLocationDegrees) -> ()) {
         let lat = currentLocation.coordinate.latitude
         let long = currentLocation.coordinate.longitude
         
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: lat, longitude: long)
-        geoCoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
-            guard let placeMark = placemarks?.first else { return }
-            if let city = placeMark.subAdministrativeArea {
-                if self?.currentCity == "" {
-                    self?.currentCity = city
+        geoCoder.reverseGeocodeLocation(location) { placemarks, error in
+            if let placeMark = placemarks?.first {
+                if let city = placeMark.subAdministrativeArea {
                     completion(city, lat, long)
+                } else {
+                    print("Error with reversing geocode location")
                 }
             }
         }

@@ -17,6 +17,7 @@ struct Current: Codable {
     let humidity: Float
     let wind_speed: Float
     let feels_like: Float
+    let dt: Float
     let weather: [Weather]
 }
 struct Weather: Codable {

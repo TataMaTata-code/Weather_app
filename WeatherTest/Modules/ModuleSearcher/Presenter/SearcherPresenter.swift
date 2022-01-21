@@ -14,7 +14,7 @@ protocol SearcherPresenterInput {
 
 protocol SearcherPresenterOuput: AnyObject {
     func setStateWithEntity(with entity: SearcherEntity)
-    func setBackgroud(fileName: String, color: String)
+    func setBackgroud(color: String)
 }
 
 final class SearcherPresenterImp: SearcherPresenterInput {
@@ -26,7 +26,8 @@ final class SearcherPresenterImp: SearcherPresenterInput {
     
         
     func viewIsReady() {
-        interactor.configEntity()
+        interactor.loadWeather()
+        interactor.checkConnection()
     }
     
     func didChooseCity(city: String) {
@@ -44,8 +45,8 @@ extension SearcherPresenterImp: SearcherInteractorOuput {
     func updateEntity(with entity: SearcherEntity) {
         view?.setStateWithEntity(with: entity)
     }
-    func updateBackgroud(fileName: String, color: String) {
-        view?.setBackgroud(fileName: fileName, color: color)
+    func updateBackgroud(color: String) {
+        view?.setBackgroud(color: color)
     }
 }
 

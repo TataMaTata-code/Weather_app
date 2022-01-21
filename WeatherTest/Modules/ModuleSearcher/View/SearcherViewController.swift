@@ -19,9 +19,7 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
     
     var presenter: SearcherPresenterInput!
     
-    var entity: SearcherEntity?
-    
-    let dataService = DataService()
+    var searcherEntity: SearcherEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +50,10 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
         tableView.backgroundColor = .clear
         
         tableView.dataSource = self
-        
         tableView.register(CurrentLocationTableViewCell.nib(), forCellReuseIdentifier: CurrentLocationTableViewCell.identifier)
+        
+        tableView.allowsSelection = false
     }
-    
     
 //MARK: - Searcher
     
@@ -80,11 +78,11 @@ extension SearcherViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrentLocationTableViewCell.identifier, for: indexPath) as? CurrentLocationTableViewCell else { return UITableViewCell() }
-//            cell.configBackgroud(fileName: fileName, color: color)
-            cell.cityNameLabel.text = entity?.city
-            cell.temperatureLabel.text = entity?.temp
-            cell.descriptionLabel.text = entity?.descript
-            cell.feelsLikeLabel.text = entity?.feelsLike
+            cell.backgroundColor = UIColor(hex: color)
+            cell.cityNameLabel.text = searcherEntity?.city
+            cell.temperatureLabel.text = searcherEntity?.temp
+            cell.descriptionLabel.text = searcherEntity?.descript
+            cell.feelsLikeLabel.text = searcherEntity?.feelsLike
             
             return cell
             
@@ -96,11 +94,11 @@ extension SearcherViewController: UITableViewDataSource {
 
 extension SearcherViewController: SearcherPresenterOuput {
     func setStateWithEntity(with entity: SearcherEntity) {
-        self.entity = entity
+        searcherEntity = entity
     }
-    func setBackgroud(fileName: String, color: String) {
-        self.fileName = fileName
+    func setBackgroud(color: String) {
         self.color = color
+        tableView.reloadData()
     }
 }
 

@@ -5,7 +5,8 @@
 //  Created by Tata on 19/01/22.
 //
 
-struct SearcherEntity {
+struct SearcherEntity: Codable {
+    var icon: String
     var city: String
     var descript: String
     var temp: String

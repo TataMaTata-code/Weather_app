@@ -10,6 +10,8 @@ import SpriteKit
 protocol BackgroudViewService {
     func backgroudAnimation(entity: MainEntity) -> String
     func backgroudColor(entity: MainEntity) -> String
+    
+    func backgroudColorSearcher(entity: SearcherEntity) -> String
 }
 
 final class BackgroudViewServiceImp: BackgroudViewService {
@@ -26,6 +28,17 @@ final class BackgroudViewServiceImp: BackgroudViewService {
     }
 
     func backgroudColor(entity: MainEntity) -> String {
+        let colorDic = WeatherColorDictionary()
+        for color in colorDic.dictionary {
+            if entity.icon == color.key {
+                let color = color.value
+                return color
+            }
+        }
+        return ""
+    }
+    
+    func backgroudColorSearcher(entity: SearcherEntity) -> String {
         let colorDic = WeatherColorDictionary()
         for color in colorDic.dictionary {
             if entity.icon == color.key {
