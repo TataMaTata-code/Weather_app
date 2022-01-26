@@ -6,6 +6,9 @@
 //
 
 struct WeatherResponse: Codable {
+    let lat: Float
+    let lon: Float
+    let timezone_offset: Float
     let current: Current
     let hourly: [Hourly]
     let daily: [Daily]
@@ -26,7 +29,7 @@ struct Weather: Codable {
     let icon: String
 }
 struct Hourly: Codable {
-    let dt: Float
+    let dt: Int
     let temp: Float
     let weather: [WeatherHourly]
 }

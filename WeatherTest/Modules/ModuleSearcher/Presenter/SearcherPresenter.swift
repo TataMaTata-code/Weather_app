@@ -5,16 +5,21 @@
 //  Created by Tata on 09/01/22.
 //
 
+import Foundation
+
 protocol SearcherPresenterInput {
     var view: SearcherPresenterOuput? { get set }
+    
+    func viewIsReady()
     func didChooseCity(city: String)
     func dismissSearcher()
-    func viewIsReady()
+    func updateModelFromView(city: String, lat: Double, long: Double)
+    func removeEntityAtIndex(index: Int)
 }
 
 protocol SearcherPresenterOuput: AnyObject {
     func setStateWithEntity(with entity: SearcherEntity)
-    func setBackgroud(color: String)
+    func setStateWithEntities(with entities: [SearcherEntity])
 }
 
 final class SearcherPresenterImp: SearcherPresenterInput {
@@ -27,14 +32,22 @@ final class SearcherPresenterImp: SearcherPresenterInput {
         
     func viewIsReady() {
         interactor.loadWeather()
+        interactor.loadWeatherForCells()
         interactor.checkConnection()
     }
     
     func didChooseCity(city: String) {
         interactor.didChooseCityFromSearcher(city: city)
     }
+
     func dismissSearcher() {
         router.dismissSearcher(output: self)
+    }
+    func updateModelFromView(city: String, lat: Double, long: Double) {
+        interactor.configModel(city: city, lat: lat, long: long)
+    }
+    func removeEntityAtIndex(index: Int) {
+        interactor.removeEntity(index: index)
     }
 }
 
@@ -45,14 +58,8 @@ extension SearcherPresenterImp: SearcherInteractorOuput {
     func updateEntity(with entity: SearcherEntity) {
         view?.setStateWithEntity(with: entity)
     }
-    func updateBackgroud(color: String) {
-        view?.setBackgroud(color: color)
-    }
-}
-
-extension SearcherPresenterImp: DataServiceDelegate {
-    func updateEntity(with entity: MainEntity) {
-//        view?.setStateWithEntity(with: entity)
+    func updateArrayOfEntity(with entity: [SearcherEntity]) {
+        view?.setStateWithEntities(with: entity)
     }
 }
 

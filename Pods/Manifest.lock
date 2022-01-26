@@ -1,20 +1,28 @@
 PODS:
+  - Alamofire (5.5.0)
   - lottie-ios (3.2.3)
   - SnapKit (5.0.1)
+  - SwipeCellKit (2.6.0)
 
 DEPENDENCIES:
+  - Alamofire
   - lottie-ios
   - SnapKit
+  - SwipeCellKit (= 2.6.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - lottie-ios
     - SnapKit
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
 
-PODFILE CHECKSUM: cf941379241a2959da23e135f5fc164a5c251a61
+PODFILE CHECKSUM: 8234f9944f5a9c83b23864052bd496ff6df52950
 
 COCOAPODS: 1.11.2

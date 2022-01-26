@@ -55,7 +55,6 @@ class MainViewController: UIViewController {
         node.position = CGPoint(x: view.frame.width + 100,
                                 y: view.frame.height + 30)
         scene.backgroundColor = UIColor(hex: color) ?? .white
-        
         scene.addChild(node)
     }
     
@@ -100,7 +99,9 @@ class MainViewController: UIViewController {
     
     private func setHourlyCells(cell: WeekCollectionViewCell, indexPath: IndexPath) {
         let dt = mainEntity?.hourly[indexPath.row].dt ?? 0
-        let date = dateFormatterService.dateFormater(dt: dt, format: "H")
+        let offset = mainEntity?.timezone ?? 0
+        let date = dateFormatterService.dateFormatter(dt: dt, format: "HH")
+        let dateOffset = dateFormatterService.dateFormatterWithTimeZone(format: "HH", dt: dt, offset: Int(offset))
         let iconName = mainEntity?.hourly[indexPath.row].weather.first?.icon
         
         for icons in iconsDic.iconsDic {
@@ -109,14 +110,14 @@ class MainViewController: UIViewController {
                 cell.iconWeather.image = icon
             }
         }
-        cell.hours.text = date
+        cell.hours.text = dateOffset
         cell.temperature.text = "\(Int(mainEntity?.hourly[indexPath.row].temp ?? 0))°"
         
     }
     
     private func setDayOfWeek(indexPath: IndexPath) -> String {
         guard let dt = (mainEntity?.daily[indexPath.row].dt) else { return "" }
-        let date = dateFormatterService.dateFormater(dt: dt, format: "E")
+        let date = dateFormatterService.dateFormatter(dt: Int(dt), format: "E")
         return date
     }
     

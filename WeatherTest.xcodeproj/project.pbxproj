@@ -26,8 +26,8 @@
 		5F3425592747B16A00218A4B /* CurrentWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3425572747B16900218A4B /* CurrentWeatherTableViewCell.swift */; };
 		5F34255A2747B16A00218A4B /* CurrentWeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3425582747B16900218A4B /* CurrentWeatherTableViewCell.xib */; };
 		5F3425602747CE5300218A4B /* WeatherHourlyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F34255E2747CE5300218A4B /* WeatherHourlyTableViewCell.swift */; };
-		5F5915CC274A44BC00EE8C05 /* UIView+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */; };
-		5F5915CE274A586D00EE8C05 /* UIImage+ExstensionGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */; };
+		5F5915CC274A44BC00EE8C05 /* UIView+UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CB274A44BC00EE8C05 /* UIView+UIColor+Extension.swift */; };
+		5F5915CE274A586D00EE8C05 /* UIImage+Exstension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915CD274A586D00EE8C05 /* UIImage+Exstension.swift */; };
 		5F5915D8274B00E400EE8C05 /* SearcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */; };
 		5F6E8531278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F6E8530278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib */; };
 		5F7C6867278B03FC00C6B113 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7C6866278B03FC00C6B113 /* MainViewController.swift */; };
@@ -42,7 +42,6 @@
 		5F7D669B27957E9C004A2EA8 /* CloudsParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5F7D669A27957E9C004A2EA8 /* CloudsParticle.sks */; };
 		5FCCE8AD2798652F000F1382 /* CurrentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCCE8AB2798652F000F1382 /* CurrentLocationTableViewCell.swift */; };
 		5FCCE8AE2798652F000F1382 /* CurrentLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FCCE8AC2798652F000F1382 /* CurrentLocationTableViewCell.xib */; };
-		5FCCE8B227989158000F1382 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCCE8B127989158000F1382 /* DataService.swift */; };
 		5FCCE8B427989FD5000F1382 /* SearcherEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCCE8B327989FD5000F1382 /* SearcherEntity.swift */; };
 		5FDCD36727491C81001FBD39 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCD36627491C81001FBD39 /* WeatherResponse.swift */; };
 		5FEAADA3276F3FDD00899808 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEAADA2276F3FDD00899808 /* WeatherModel.swift */; };
@@ -92,8 +91,8 @@
 		5F3425572747B16900218A4B /* CurrentWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		5F3425582747B16900218A4B /* CurrentWeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentWeatherTableViewCell.xib; sourceTree = "<group>"; };
 		5F34255E2747CE5300218A4B /* WeatherHourlyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyTableViewCell.swift; sourceTree = "<group>"; };
-		5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+UIColor.swift"; sourceTree = "<group>"; };
-		5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ExstensionGif.swift"; sourceTree = "<group>"; };
+		5F5915CB274A44BC00EE8C05 /* UIView+UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+UIColor+Extension.swift"; sourceTree = "<group>"; };
+		5F5915CD274A586D00EE8C05 /* UIImage+Exstension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Exstension.swift"; sourceTree = "<group>"; };
 		5F5915D7274B00E400EE8C05 /* SearcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherViewController.swift; sourceTree = "<group>"; };
 		5F6E8530278DA51A0083D3B7 /* WeatherHourlyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherHourlyTableViewCell.xib; sourceTree = "<group>"; };
 		5F7C6866278B03FC00C6B113 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +107,6 @@
 		5F7D669A27957E9C004A2EA8 /* CloudsParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CloudsParticle.sks; sourceTree = "<group>"; };
 		5FCCE8AB2798652F000F1382 /* CurrentLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationTableViewCell.swift; sourceTree = "<group>"; };
 		5FCCE8AC2798652F000F1382 /* CurrentLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentLocationTableViewCell.xib; sourceTree = "<group>"; };
-		5FCCE8B127989158000F1382 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5FCCE8B327989FD5000F1382 /* SearcherEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherEntity.swift; sourceTree = "<group>"; };
 		5FDCD36627491C81001FBD39 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		5FEAADA2276F3FDD00899808 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -159,9 +157,9 @@
 		5F0D98622749BD9300CFD9B2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5F5915CB274A44BC00EE8C05 /* UIView+UIColor.swift */,
+				5F5915CB274A44BC00EE8C05 /* UIView+UIColor+Extension.swift */,
 				5FF2D4A1274833F300F67977 /* UIView+Extension.swift */,
-				5F5915CD274A586D00EE8C05 /* UIImage+ExstensionGif.swift */,
+				5F5915CD274A586D00EE8C05 /* UIImage+Exstension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -412,7 +410,6 @@
 				5F7C686D278B372400C6B113 /* DateFormatterService.swift */,
 				5F7C686F278B567500C6B113 /* SharedStorage.swift */,
 				5FF2F8AD279498EF0000A18D /* BackgroudViewService.swift */,
-				5FCCE8B127989158000F1382 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -650,7 +647,7 @@
 				5F196FB82789BC93000C9822 /* MainEntity.swift in Sources */,
 				5F7C687C278B7B0B00C6B113 /* SearcherRouter.swift in Sources */,
 				5FCCE8B427989FD5000F1382 /* SearcherEntity.swift in Sources */,
-				5F5915CC274A44BC00EE8C05 /* UIView+UIColor.swift in Sources */,
+				5F5915CC274A44BC00EE8C05 /* UIView+UIColor+Extension.swift in Sources */,
 				5F3425412747A08A00218A4B /* SceneDelegate.swift in Sources */,
 				5F196FB42789B97D000C9822 /* MainAssembly.swift in Sources */,
 				5FF2F8AE279498EF0000A18D /* BackgroudViewService.swift in Sources */,
@@ -661,10 +658,9 @@
 				5F5915D8274B00E400EE8C05 /* SearcherViewController.swift in Sources */,
 				5F7C687A278B7AFB00C6B113 /* SearcherInteractor.swift in Sources */,
 				5F196FC12789CA1B000C9822 /* WeatherDataService.swift in Sources */,
-				5F5915CE274A586D00EE8C05 /* UIImage+ExstensionGif.swift in Sources */,
+				5F5915CE274A586D00EE8C05 /* UIImage+Exstension.swift in Sources */,
 				5F0D985A2749716A00CFD9B2 /* Parameters.swift in Sources */,
 				5F196FB02789B965000C9822 /* MainInteractor.swift in Sources */,
-				5FCCE8B227989158000F1382 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

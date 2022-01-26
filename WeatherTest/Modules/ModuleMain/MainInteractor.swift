@@ -33,9 +33,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
-    
-    var dataService: DataService?
-    
+        
     var entity: MainEntity?
     
     var isConnected = false
@@ -53,8 +51,8 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         let wind = " : \(Int(mapped.current.wind_speed)) m/s"
         let humidity = " : \(Int(mapped.current.humidity))%"
         let descript = mapped.current.weather.first?.main ?? ""
-        let sunrise = dateFormatterService.dateFormater(dt: mapped.current.sunrise, format: " HH:mm")
-        let sunset = dateFormatterService.dateFormater(dt: mapped.current.sunset, format: " HH:mm")
+        let sunrise = dateFormatterService.dateFormatter(dt: Int(mapped.current.sunrise), format: " HH:mm")
+        let sunset = dateFormatterService.dateFormatter(dt: Int(mapped.current.sunset), format: " HH:mm")
         let entity = MainEntity(city: city,
                                 icon: icon,
                                 temp: temp,
@@ -63,6 +61,7 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
                                 wind: wind,
                                 sunrise: sunrise,
                                 sunset: sunset,
+                                timezone: mapped.timezone_offset,
                                 hourly: mapped.hourly,
                                 daily: mapped.daily)
         saveEntity(entity: entity)
