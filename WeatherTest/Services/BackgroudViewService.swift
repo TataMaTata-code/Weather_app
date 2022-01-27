@@ -39,28 +39,6 @@ final class BackgroudViewServiceImp: BackgroudViewService {
         return ""
     }
     
-//    func backgroudAnimationSearcher(entity: SearcherEntity) -> String {
-//        let particleDic = WeatherNodesDictionary()
-//        for day in particleDic.dictionary {
-//            if entity.icon == day.key {
-//                let particle = day.value
-//                return particle
-//            }
-//        }
-//        return ""
-//    }
-    
-//    func backgroudColorSearcher(entity: SearcherEntity) -> String {
-//        let colorDic = WeatherColorDictionary()
-//        for color in colorDic.dictionary {
-//            if entity.icon == color.key {
-//                let color = color.value
-//                return color
-//            }
-//        }
-//        return ""
-//    }
-    
     func backgroudAnimationSearcher(with mapped: WeatherResponse) -> String {
         let particleDic = WeatherNodesDictionary()
         for day in particleDic.dictionary {

@@ -46,7 +46,7 @@ class CurrentLocationTableViewCell: UITableViewCell {
         skView.presentScene(scene)
         
         guard let node = SKSpriteNode(fileNamed: fileName) else { return }
-        node.position = CGPoint(x: self.frame.width + 100,
+        node.position = CGPoint(x: self.frame.width,
                                 y: self.frame.height)
         scene.backgroundColor = UIColor(hex: color) ?? .white
         scene.addChild(node)

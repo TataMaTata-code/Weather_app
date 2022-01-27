@@ -51,8 +51,8 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         let wind = " : \(Int(mapped.current.wind_speed)) m/s"
         let humidity = " : \(Int(mapped.current.humidity))%"
         let descript = mapped.current.weather.first?.main ?? ""
-        let sunrise = dateFormatterService.dateFormatter(dt: Int(mapped.current.sunrise), format: " HH:mm")
-        let sunset = dateFormatterService.dateFormatter(dt: Int(mapped.current.sunset), format: " HH:mm")
+        let sunrise = dateFormatterService.dateFormatter(dt: mapped.current.sunrise, format: " HH:mm")
+        let sunset = dateFormatterService.dateFormatter(dt: mapped.current.sunset, format: " HH:mm")
         let entity = MainEntity(city: city,
                                 icon: icon,
                                 temp: temp,

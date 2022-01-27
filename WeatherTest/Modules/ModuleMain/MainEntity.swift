@@ -14,7 +14,7 @@ struct MainEntity: Codable {
     var wind: String
     var sunrise: String
     var sunset: String
-    var timezone: Float
+    var timezone: Int
     var hourly: [Hourly]
     var daily: [Daily]
 }

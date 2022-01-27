@@ -7,12 +7,12 @@
 import Foundation
 
 protocol DateFormatterService {
-    func dateFormatter(dt: Int, format: String) -> String
+    func dateFormatter(dt: Float, format: String) -> String
     func dateFormatterWithTimeZone(format: String, dt: Int, offset: Int) -> String
 }
 
 final class DateFormatterServiceImp: DateFormatterService {
-    func dateFormatter(dt: Int, format: String) -> String {
+    func dateFormatter(dt: Float, format: String) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(dt))
         
         let dayTimePeriodFormatter = DateFormatter()

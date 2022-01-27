@@ -100,7 +100,6 @@ class MainViewController: UIViewController {
     private func setHourlyCells(cell: WeekCollectionViewCell, indexPath: IndexPath) {
         let dt = mainEntity?.hourly[indexPath.row].dt ?? 0
         let offset = mainEntity?.timezone ?? 0
-        let date = dateFormatterService.dateFormatter(dt: dt, format: "HH")
         let dateOffset = dateFormatterService.dateFormatterWithTimeZone(format: "HH", dt: dt, offset: Int(offset))
         let iconName = mainEntity?.hourly[indexPath.row].weather.first?.icon
         
@@ -116,13 +115,13 @@ class MainViewController: UIViewController {
     }
     
     private func setDayOfWeek(indexPath: IndexPath) -> String {
-        guard let dt = (mainEntity?.daily[indexPath.row].dt) else { return "" }
-        let date = dateFormatterService.dateFormatter(dt: Int(dt), format: "E")
+        guard let dt = (mainEntity?.daily[indexPath.row - 2].dt) else { return "" }
+        let date = dateFormatterService.dateFormatter(dt: dt, format: "E")
         return date
     }
     
     private func setIcon(indexPath: IndexPath) -> UIImage? {
-        let iconName = mainEntity?.daily[indexPath.row].weather.first?.icon ?? ""
+        let iconName = mainEntity?.daily[indexPath.row - 2].weather.first?.icon ?? ""
         for icons in iconsDic.iconsDic {
             if iconName == icons.key {
                 let icon = UIImage(systemName: icons.value)?.withRenderingMode(.alwaysOriginal)
@@ -133,12 +132,12 @@ class MainViewController: UIViewController {
     }
     
     private func setMinTemp(indexPath: IndexPath) -> String {
-        let minTemp = "\(Int(mainEntity?.daily[indexPath.row].temp.min ?? 0))°"
+        let minTemp = "\(Int(mainEntity?.daily[indexPath.row - 2].temp.min ?? 0))°"
         return minTemp
     }
     
     private func setMaxTemp(indexPath: IndexPath) -> String {
-        let maxTemp = "\(Int(mainEntity?.daily[indexPath.row].temp.max ?? 0))°"
+        let maxTemp = "\(Int(mainEntity?.daily[indexPath.row - 2].temp.max ?? 0))°"
         return maxTemp
     }
     
@@ -154,7 +153,8 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainEntity?.daily.count ?? 0
+        let numOfRows = mainEntity?.daily.count ?? 0
+        return numOfRows + 2
 }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {

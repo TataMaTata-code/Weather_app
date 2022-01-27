@@ -103,15 +103,21 @@ extension SearcherViewController: UITableViewDataSource {
                 self?.presenter.updateModelFromView(city: city, lat: lat, long: long)
                 self?.presenter.dismissSearcher()
             }
-            
             return cell
             
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrentLocationTableViewCell.identifier, for: indexPath) as? CurrentLocationTableViewCell else { return UITableViewCell() }
+            cell.alpha = 0
             let entity = entities[indexPath.row - 1]
             
             let fileName = entity.scene
             let color = entity.color
+            
+            UIView.animate(withDuration: 1,
+                           delay: 0,
+                           options: .curveEaseOut) {
+                cell.alpha = 1
+            }
             
             cell.configBackground(fileName: fileName, color: color)
             cell.locationLabel.text = entity.city
@@ -148,6 +154,7 @@ extension SearcherViewController: UITableViewDelegate {
         }
     }
 }
+
 //MARK: - Presenter
 
 extension SearcherViewController: SearcherPresenterOuput {

@@ -38,6 +38,10 @@ final class SearcherInteractorImp: SearcherInteractorInput {
     //MARK: - Configurations
     
     private func configEntity(with city: String, mapped: WeatherResponse) -> SearcherEntity {
+        let dt = mapped.current.dt
+        let timeZoneOffset = Int(mapped.timezone_offset)
+        let currentTime = dateFormatter.dateFormatterWithTimeZone(format: "HH:mm", dt: dt, offset: timeZoneOffset)
+        
         let scene = backgroudConfigService.backgroudAnimationSearcher(with: mapped)
         let color = backgroudConfigService.backgroudColorSearcher(with: mapped)
         let lat = Double(mapped.lat)
@@ -46,7 +50,6 @@ final class SearcherInteractorImp: SearcherInteractorInput {
         let descript = mapped.current.weather.first?.description ?? ""
         let temp = "\(Int(mapped.current.temp))°"
         let feelsLike = "Feels like: \(Int(mapped.current.feels_like))°"
-        let currentTime = dateFormatter.dateFormatter(dt: Int(mapped.current.dt), format: "HH:mm")
         let entity = SearcherEntity(scene: scene,
                                     color: color,
                                     lat: lat,
@@ -90,14 +93,13 @@ final class SearcherInteractorImp: SearcherInteractorInput {
     
     private func loadCitiesWeather() {
         let group = DispatchGroup()
-        let entities = getEntities()
-        var newEntities: [SearcherEntity] = []
-        for entity in entities {
+        var entities = getEntities()
+        for i in 0..<entities.count {
             group.enter()
-            weatherDataService.loadWeatherData(lat: entity.lat, long: entity.long) { [weak self] mapped in
-                guard let newEntity = self?.configEntity(with: entity.city, mapped: mapped) else { return }
-                newEntities.append(newEntity)
-                self?.saveArrayOfEntities(with: newEntities)
+            weatherService.loadWeatherData(lat: entities[i].lat, long: entities[i].long) { [weak self] mapped in
+                guard let newEntity = self?.configEntity(with: entities[i].city, mapped: mapped) else { return }
+                entities[i] = newEntity
+                self?.saveArrayOfEntities(with: entities)
                 group.leave()
             }
         }

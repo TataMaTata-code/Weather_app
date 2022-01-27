@@ -8,7 +8,7 @@
 struct WeatherResponse: Codable {
     let lat: Float
     let lon: Float
-    let timezone_offset: Float
+    let timezone_offset: Int
     let current: Current
     let hourly: [Hourly]
     let daily: [Daily]
@@ -20,7 +20,7 @@ struct Current: Codable {
     let humidity: Float
     let wind_speed: Float
     let feels_like: Float
-    let dt: Float
+    let dt: Int
     let weather: [Weather]
 }
 struct Weather: Codable {
