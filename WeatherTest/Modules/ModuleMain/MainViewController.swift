@@ -24,16 +24,21 @@ class MainViewController: UIViewController {
     let iconsDic = MainIconsEntity()
     
     var dateFormatterService: DateFormatterService!
+    var alertService: AlertNotificationService!
     
     override func loadView() {
         super.loadView()
         prepareView()
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewIsReady()
         config()
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
     }
     
     private func prepareView() {
@@ -46,16 +51,49 @@ class MainViewController: UIViewController {
         configButton()
     }
     
-    private func configBackgroud(fileName: String, color: String) {
+    private func checkConnection(status: Bool) {
+        let title = "No internet connection"
+        let message = "No current weather information available"
+        if !status {
+            alertService.showErrorAlert(self: self, title: title, message: message)
+        }
+    }
+    
+    private func configBackground(with model: BackgroundModel) {
         var skView: SKView { view as! SKView }
         let scene = SKScene(size: view.frame.size)
         skView.presentScene(scene)
+       
+        let beginColor = UIColor(hex: model.beginColor) ?? .white
+        let endColor = UIColor(hex: model.endColor) ?? .white
         
-        guard let node = SKSpriteNode(fileNamed: fileName) else { return }
-        node.position = CGPoint(x: view.frame.width + 100,
-                                y: view.frame.height + 30)
-        scene.backgroundColor = UIColor(hex: color) ?? .white
-        scene.addChild(node)
+        let texture = SKTexture(image: imageWithGradient(from: beginColor, to: endColor, with: view.frame))
+        let background = SKSpriteNode(texture: texture)
+        background.position = CGPoint(x: view.frame.width/2, y: view.frame.height/2)
+        scene.addChild(background)
+        
+        if let node = SKSpriteNode(fileNamed: model.node) {
+            node.position = CGPoint(x: view.frame.width + 80,
+                                    y: view.frame.height)
+            scene.addChild(node)
+        }
+        
+        if let node2 = SKSpriteNode(fileNamed: model.secondNode) {
+            node2.position = CGPoint(x: -view.frame.width,
+                                     y: view.frame.height)
+            scene.addChild(node2)
+        }
+    }
+    
+    private func imageWithGradient(from beginColor: UIColor, to endColor: UIColor, with frame: CGRect) -> UIImage {
+        let layer = CAGradientLayer()
+        layer.frame = frame
+        layer.colors = [beginColor.cgColor, endColor.cgColor]
+        UIGraphicsBeginImageContext(CGSize(width: frame.width, height: frame.height))
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
+        UIGraphicsEndImageContext()
+        return image
     }
     
     private func configTableView() {
@@ -82,18 +120,18 @@ class MainViewController: UIViewController {
     }
     
     private func configButton() {
-        let plusIcon = UIImage(systemName: "plus")
+        let listIcon = UIImage(systemName: "list.bullet")
         
         view.addSubview(buttonShowSearcher)
-
-        buttonShowSearcher.setBackgroundImage(plusIcon, for: .normal)
+        
+        buttonShowSearcher.setBackgroundImage(listIcon, for: .normal)
         buttonShowSearcher.tintColor = .white
         buttonShowSearcher.addTarget(self, action: #selector(actionShowSearchScreen), for: .touchUpInside)
         
         buttonShowSearcher.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(50)
             make.size.equalTo(25)
-            make.right.equalToSuperview().inset(35)
+            make.right.equalToSuperview().inset(22)
         }
     }
     
@@ -116,7 +154,8 @@ class MainViewController: UIViewController {
     
     private func setDayOfWeek(indexPath: IndexPath) -> String {
         guard let dt = (mainEntity?.daily[indexPath.row - 2].dt) else { return "" }
-        let date = dateFormatterService.dateFormatter(dt: dt, format: "E")
+        let offset = mainEntity?.timezone ?? 0
+        let date = dateFormatterService.dateFormatter(dt: dt, format: "E", offset: offset)
         return date
     }
     
@@ -141,8 +180,7 @@ class MainViewController: UIViewController {
         return maxTemp
     }
     
-//    MARK: - Actions
-    
+    //    MARK: - Actions
     
     @objc func actionShowSearchScreen() {
         presenter.showSearcherScreen()
@@ -154,8 +192,9 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numOfRows = mainEntity?.daily.count ?? 0
-        return numOfRows + 2
-}
+        return numOfRows + 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
@@ -197,7 +236,13 @@ extension MainViewController: MainPresenterOutput {
         mainEntity = entity
         tableView.reloadData()
     }
-    func setBackgroud(fileName: String, color: String) {
-        configBackgroud(fileName: fileName, color: color)
+    
+    func setBackground(with model: BackgroundModel) {
+        configBackground(with: model)
     }
+    
+    func changeStatusNetwork(status: Bool) {
+        checkConnection(status: status)
+    }
+
 }

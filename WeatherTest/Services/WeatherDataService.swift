@@ -9,22 +9,22 @@ import CoreLocation
 import Alamofire
 
 protocol WeatherDataService {
-    func loadWeatherData(lat: CLLocationDegrees, long: CLLocationDegrees, completion: @escaping (WeatherResponse) -> ())
+    func loadWeatherData(lat: CLLocationDegrees, long: CLLocationDegrees, completion: @escaping (WeatherResponse?, Error?) -> ())
     func prepareLoadDataRequest(lat: CLLocationDegrees, long: CLLocationDegrees) -> String
 }
 
 //MARK: - Implementation
 
-final class WeatherDataServiceImp: WeatherDataService {
-    let storageService: SharedStorage = SharedStorageImp()
-    
-    func loadWeatherData(lat: CLLocationDegrees, long: CLLocationDegrees, completion: @escaping (WeatherResponse) -> ()) {
+final class WeatherDataServiceImp: WeatherDataService {    
+    func loadWeatherData(lat: CLLocationDegrees, long: CLLocationDegrees, completion: @escaping (WeatherResponse?, Error?) -> ()) {
         AF.request(prepareLoadDataRequest(lat: lat, long: long)).response { response in
-            guard let data = response.data else { return }
             do {
-                let mapped = try JSONDecoder().decode(WeatherResponse.self, from: data)
-                completion(mapped)
-                
+                if let data = response.data {
+                    let mapped = try JSONDecoder().decode(WeatherResponse.self, from: data)
+                    completion(mapped, nil)
+                } else if let error = response.error {
+                    completion(nil, error)
+                }
             } catch let error {
                 print(error)
             }

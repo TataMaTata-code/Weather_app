@@ -9,7 +9,7 @@ pod 'SnapKit'
 pod 'lottie-ios'
 pod 'SwipeCellKit', '2.6.0'
 pod 'Alamofire'
-
+pod 'R.swift'
 
   # Pods for WeatherTest
 

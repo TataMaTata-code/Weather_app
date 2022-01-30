@@ -20,6 +20,7 @@ protocol SearcherPresenterInput {
 protocol SearcherPresenterOuput: AnyObject {
     func setStateWithEntity(with entity: SearcherEntity)
     func setStateWithEntities(with entities: [SearcherEntity])
+    func changeStatusNetwork(status: Bool)
 }
 
 final class SearcherPresenterImp: SearcherPresenterInput {
@@ -33,7 +34,6 @@ final class SearcherPresenterImp: SearcherPresenterInput {
     func viewIsReady() {
         interactor.loadWeather()
         interactor.loadWeatherForCells()
-        interactor.checkConnection()
     }
     
     func didChooseCity(city: String) {
@@ -60,6 +60,9 @@ extension SearcherPresenterImp: SearcherInteractorOuput {
     }
     func updateArrayOfEntity(with entity: [SearcherEntity]) {
         view?.setStateWithEntities(with: entity)
+    }
+    func networkConnection(status: Bool) {
+        view?.changeStatusNetwork(status: status)
     }
 }
 

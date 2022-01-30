@@ -19,6 +19,8 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
     
     private var entities: [SearcherEntity] = []
     
+    var alertService: AlertNotificationService!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewIsReady()
@@ -31,6 +33,14 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
         configSuperView()
         configSearcher()
         configTableView()
+    }
+    
+    private func checkConnection(status: Bool) {
+        let title = "City cannot be found"
+        let message = "Perhaps this city is not in the list or there is no Interner connection"
+        if !status {
+            alertService.showErrorAlert(self: self, title: title, message: message)
+        }
     }
     
     private func configSuperView() {
@@ -86,14 +96,13 @@ extension SearcherViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrentLocationTableViewCell.identifier, for: indexPath) as? CurrentLocationTableViewCell else { return UITableViewCell() }
-            guard let fileName = searcherEntity?.scene else { return UITableViewCell() }
-            guard let color = searcherEntity?.color else { return UITableViewCell() }
+            guard let model = searcherEntity?.background else { return UITableViewCell()}
             
             let lat = searcherEntity?.lat ?? 0
             let long = searcherEntity?.long ?? 0
             let city = searcherEntity?.city ?? ""
             
-            cell.configBackground(fileName: fileName, color: color)
+            cell.configurateBackground(with: model)
             cell.locationLabel.text = "Current location"
             cell.cityNameOrTimeLabel.text = searcherEntity?.city
             cell.temperatureLabel.text = searcherEntity?.temp
@@ -107,19 +116,12 @@ extension SearcherViewController: UITableViewDataSource {
             
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrentLocationTableViewCell.identifier, for: indexPath) as? CurrentLocationTableViewCell else { return UITableViewCell() }
-            cell.alpha = 0
             let entity = entities[indexPath.row - 1]
+
+            let model = entity.background
             
-            let fileName = entity.scene
-            let color = entity.color
-            
-            UIView.animate(withDuration: 1,
-                           delay: 0,
-                           options: .curveEaseOut) {
-                cell.alpha = 1
-            }
-            
-            cell.configBackground(fileName: fileName, color: color)
+//            cell.configBackground(fileName: fileName, color: color)
+            cell.configurateBackground(with: model)
             cell.locationLabel.text = entity.city
             cell.cityNameOrTimeLabel.text = entity.currentTime
             cell.descriptionLabel.text = entity.descript
@@ -130,6 +132,16 @@ extension SearcherViewController: UITableViewDataSource {
                 self?.presenter.dismissSearcher()
             }
             return cell
+        }
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
+            cell.alpha = 0
+            UIView.animate(withDuration: 1,
+                           delay: 0.05 * Double(indexPath.row),
+                           options: .curveEaseOut) {
+                cell.alpha = 1
+            }
         }
     }
 }
@@ -160,12 +172,16 @@ extension SearcherViewController: UITableViewDelegate {
 extension SearcherViewController: SearcherPresenterOuput {
     func setStateWithEntity(with entity: SearcherEntity) {
         searcherEntity = entity
+        tableView.reloadData()
     }
     func setStateWithEntities(with entities: [SearcherEntity]) {
         self.entities = entities
         if !isReloaded {
             reloadTableView()
         }
+    }
+    func changeStatusNetwork(status: Bool) {
+        checkConnection(status: status)
     }
 }
 

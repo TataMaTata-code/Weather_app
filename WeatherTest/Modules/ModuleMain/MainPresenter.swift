@@ -15,7 +15,8 @@ protocol MainPresenterInput {
 
 protocol MainPresenterOutput: AnyObject {
     func setState(with entity: MainEntity)
-    func setBackgroud(fileName: String, color: String)
+    func changeStatusNetwork(status: Bool)
+    func setBackground(with model: BackgroundModel)
 }
 
 //MARK: - Implementation
@@ -28,8 +29,8 @@ final class MainPresenterImp: MainPresenterInput, ModuleInput {
     var router: MainRouterInput!
     
     func viewIsReady() {
+        interactor.loadWeatherFromStorage()
         interactor.locationAccess()
-        interactor.checkConnection()
     }
     
     func showSearcherScreen() {
@@ -40,9 +41,14 @@ extension MainPresenterImp: MainInteractorOuput {
     func updateEntity(entity: MainEntity) {
         view?.setState(with: entity)
     }
-    func updateBackgroud(fileName: String, color: String) {
-        view?.setBackgroud(fileName: fileName, color: color)
+    func updateBackground(with model: BackgroundModel) {
+        view?.setBackground(with: model)
     }
+    
+    func networkConnection(status: Bool) {
+        view?.changeStatusNetwork(status: status)
+    }
+
 }
 extension MainPresenterImp: ModuleOuput {
     func didUpdateModel(model: WeatherModel) {

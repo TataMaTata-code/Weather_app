@@ -17,10 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfV-bb-A87">
-                        <rect key="frame" x="10" y="0.0" width="50" height="85"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="7Ju-9j-SGe"/>
-                        </constraints>
+                        <rect key="frame" x="10" y="0.0" width="39.5" height="85"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>

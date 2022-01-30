@@ -7,11 +7,11 @@
 
 import UIKit
 import SpriteKit
+import Rswift
 
 class MainAssembly {
     static func configMainModule() -> UIViewController? {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController else { return nil }
+        guard let controller = R.storyboard.main.mainViewController() else { return nil }
         
         let presenter = MainPresenterImp()
         let interactor = MainInteractorImp()
@@ -22,6 +22,8 @@ class MainAssembly {
         let storageService = SharedStorageImp()
         let dateFormatterService = DateFormatterServiceImp()
         let backgroudViewService = BackgroudViewServiceImp()
+        let alertService = AlertNotificationServiceImp()
+        let coreDataService = CoreDataServiceImp()
         
         presenter.router = router
         presenter.interactor = interactor
@@ -34,10 +36,12 @@ class MainAssembly {
         interactor.storageService = storageService
         interactor.dateFormatterService = dateFormatterService
         interactor.backgroudConfigService = backgroudViewService
+        interactor.coreDataService = coreDataService
         
-        controller.dateFormatterService = dateFormatterService
-
         controller.presenter = presenter
+        controller.dateFormatterService = dateFormatterService
+        controller.alertService = alertService
+
         router.view = controller
         
         return controller

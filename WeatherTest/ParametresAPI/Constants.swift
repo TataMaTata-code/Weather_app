@@ -7,7 +7,7 @@
 
 enum Constants {
     static let baseUrl = "https://api.openweathermap.org/data/2.5/onecall?"
-    static let apiKey = "3f506c70ada94081f8a944d0dce7e75f"
+    static let apiKey = "e2fc3bfd8b9ec71d15502d632b85fc4e"
 }
 enum StorageKey {
     static let keyForWeatherModel = "keyForWeatherModel"

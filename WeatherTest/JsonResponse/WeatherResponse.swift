@@ -4,6 +4,7 @@
 //
 //  Created by Tata on 20/11/21.
 //
+import Foundation
 
 struct WeatherResponse: Codable {
     let lat: Float
@@ -14,8 +15,8 @@ struct WeatherResponse: Codable {
     let daily: [Daily]
 }
 struct Current: Codable {
-    let sunrise: Float
-    let sunset: Float
+    let sunrise: Int
+    let sunset: Int
     let temp: Float
     let humidity: Float
     let wind_speed: Float
@@ -37,7 +38,7 @@ struct WeatherHourly: Codable {
     let icon: String
 }
 struct Daily: Codable {
-    let dt: Float
+    let dt: Int
     let temp: Temp
     let weather: [WeatherDaily]
 }

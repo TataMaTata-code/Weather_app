@@ -8,56 +8,33 @@ import UIKit
 import SpriteKit
 
 protocol BackgroudViewService {
-    func backgroudAnimation(entity: MainEntity) -> String
-    func backgroudColor(entity: MainEntity) -> String
-    
-    func backgroudAnimationSearcher(with mapped: WeatherResponse) -> String
-    func backgroudColorSearcher(with mapped: WeatherResponse) -> String
+    func backgroudConfigWithEntity(entity: MainEntity) -> BackgroundModel
+    func backgroundConfigWithModel(with mapped: WeatherResponse) -> BackgroundModel
+
 }
 
 final class BackgroudViewServiceImp: BackgroudViewService {
-
-    func backgroudAnimation(entity: MainEntity) -> String {
-        let particleDic = WeatherNodesDictionary()
-        for day in particleDic.dictionary {
-            if entity.icon == day.key {
-                let particle = day.value
-                return particle
+    func backgroudConfigWithEntity(entity: MainEntity) -> BackgroundModel {
+        var dictionaryModel = WeatherBackgroundDictionary()
+        let dic = dictionaryModel.dictionary
+        for model in dic {
+            if entity.icon == model.key {
+                let newModel = model.value
+                return newModel
             }
         }
-        return ""
-    }
-
-    func backgroudColor(entity: MainEntity) -> String {
-        let colorDic = WeatherColorDictionary()
-        for color in colorDic.dictionary {
-            if entity.icon == color.key {
-                let color = color.value
-                return color
-            }
-        }
-        return ""
+        return BackgroundModel(beginColor: "", endColor: "", node: "", secondNode: "")
     }
     
-    func backgroudAnimationSearcher(with mapped: WeatherResponse) -> String {
-        let particleDic = WeatherNodesDictionary()
-        for day in particleDic.dictionary {
-            if mapped.current.weather.first?.icon == day.key {
-                let particle = day.value
-                return particle
+    func backgroundConfigWithModel(with mapped: WeatherResponse) -> BackgroundModel {
+        var dictionaryModel = WeatherBackgroundDictionary()
+        let dic = dictionaryModel.dictionary
+        for model in dic {
+            if mapped.current.weather.first?.icon == model.key {
+                let newModel = model.value
+                return newModel
             }
         }
-        return ""
-    }
-    
-    func backgroudColorSearcher(with mapped: WeatherResponse) -> String {
-        let colorDic = WeatherColorDictionary()
-        for color in colorDic.dictionary {
-            if mapped.current.weather.first?.icon == color.key {
-                let color = color.value
-                return color
-            }
-        }
-        return ""
+        return BackgroundModel(beginColor: "", endColor: "", node: "", secondNode: "")
     }
 }

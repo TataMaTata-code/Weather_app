@@ -6,8 +6,7 @@
 //
 
 struct SearcherEntity: Codable {
-    var scene: String
-    var color: String
+    var background: BackgroundModel
     var lat: Double
     var long: Double
     var city: String

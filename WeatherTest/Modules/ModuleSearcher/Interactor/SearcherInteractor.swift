@@ -12,7 +12,6 @@ protocol SearcherInteractorInput {
     func didChooseCityFromSearcher(city: String)
     func loadWeather()
     func loadWeatherForCells()
-    func checkConnection()
     func configModel(city: String, lat: Double, long: Double)
     func removeEntity(index: Int)
 }
@@ -21,6 +20,7 @@ protocol SearcherInteractorOuput: AnyObject {
     func updateModel(with model: WeatherModel)
     func updateEntity(with entity: SearcherEntity)
     func updateArrayOfEntity(with entity: [SearcherEntity])
+    func networkConnection(status: Bool)
 }
 
 final class SearcherInteractorImp: SearcherInteractorInput {
@@ -32,6 +32,7 @@ final class SearcherInteractorImp: SearcherInteractorInput {
     var backgroudConfigService: BackgroudViewService!
     var weatherService: WeatherDataService!
     var dateFormatter: DateFormatterService!
+    var coreDataService: CoreDataService!
     
     private var isConnected = false
     
@@ -42,16 +43,13 @@ final class SearcherInteractorImp: SearcherInteractorInput {
         let timeZoneOffset = Int(mapped.timezone_offset)
         let currentTime = dateFormatter.dateFormatterWithTimeZone(format: "HH:mm", dt: dt, offset: timeZoneOffset)
         
-        let scene = backgroudConfigService.backgroudAnimationSearcher(with: mapped)
-        let color = backgroudConfigService.backgroudColorSearcher(with: mapped)
         let lat = Double(mapped.lat)
         let long = Double(mapped.lon)
         let city = city
         let descript = mapped.current.weather.first?.description ?? ""
         let temp = "\(Int(mapped.current.temp))°"
         let feelsLike = "Feels like: \(Int(mapped.current.feels_like))°"
-        let entity = SearcherEntity(scene: scene,
-                                    color: color,
+        let entity = SearcherEntity(background: backgroudConfigService.backgroundConfigWithModel(with: mapped),
                                     lat: lat,
                                     long: long,
                                     city: city,
@@ -70,21 +68,38 @@ final class SearcherInteractorImp: SearcherInteractorInput {
     //MARK: - API Responses
     
     func didChooseCityFromSearcher(city: String) {
-        locationService.geoCodingAddress(city: city) { [weak self] location in
-            self?.locationService.geoCodingCoordinates(currentLocation: location) { [weak self] city, lat, long in
-                self?.weatherDataService.loadWeatherData(lat: lat, long: long) { [weak self] mapped in
-                    self?.updateWeatherCell(with: city, mapped: mapped)
-                    self?.getEntitiesFromStorage()
+        locationService.geoCodingAddress(city: city) { [weak self] location, error in
+            if error == nil {
+                guard let location = location else { return }
+                self?.locationService.geoCodingCoordinates(currentLocation: location) { [weak self] city, lat, long, error in
+                    self?.weatherDataService.loadWeatherData(lat: lat ?? 0, long: long ?? 0) { [weak self] mapped, error in
+                        if mapped != nil {
+                            guard let mapped = mapped else { return }
+                            self?.updateWeatherCell(with: city ?? "", mapped: mapped)
+                            self?.getEntitiesFromStorage()
+                        } else {
+                            print("Error: \(String(describing: error))")
+                        }
+                    }
                 }
+            } else {
+                self?.output?.networkConnection(status: false)
             }
         }
     }
     
     func loadWeather() {
-        guard let model = getModel() else { return }
-        weatherService.loadWeatherData(lat: model.lat, long: model.long) { [weak self] mapped in
-            self?.updateLocationWeatherCell(with: model.city, mapped: mapped)
-            self?.isConnected = true
+        getCurrentCityEntityFromStorage()
+//        guard let model = getModel() else { return }
+        guard let model = coreDataService.fetchModel() else { return }
+        weatherService.loadWeatherData(lat: model.lat, long: model.long) { [weak self] mapped, error  in
+            if mapped != nil {
+                guard let mapped = mapped else { return }
+                self?.updateLocationWeatherCell(with: model.city ?? "", mapped: mapped)
+            } else {
+                self?.getCurrentCityEntityFromStorage()
+                print("Error: \(String(describing: error))")
+            }
         }
     }
     func loadWeatherForCells() {
@@ -96,10 +111,16 @@ final class SearcherInteractorImp: SearcherInteractorInput {
         var entities = getEntities()
         for i in 0..<entities.count {
             group.enter()
-            weatherService.loadWeatherData(lat: entities[i].lat, long: entities[i].long) { [weak self] mapped in
-                guard let newEntity = self?.configEntity(with: entities[i].city, mapped: mapped) else { return }
-                entities[i] = newEntity
-                self?.saveArrayOfEntities(with: entities)
+            weatherService.loadWeatherData(lat: entities[i].lat, long: entities[i].long) { [weak self] mapped, error in
+                if mapped != nil {
+                    guard let mapped = mapped else { return }
+                    guard let newEntity = self?.configEntity(with: entities[i].city, mapped: mapped) else { return }
+                    entities[i] = newEntity
+                    self?.saveArrayOfEntities(with: entities)
+                } else {
+                    self?.getEntitiesFromStorage()
+                    print("Error: \(String(describing: error))")
+                }
                 group.leave()
             }
         }
@@ -134,11 +155,9 @@ final class SearcherInteractorImp: SearcherInteractorInput {
         getEntitiesFromStorage()
     }
     
-    func checkConnection() {
-        if !isConnected {
-            guard let entity = getEntity() else { return }
-            output?.updateEntity(with: entity)
-        }
+    private func getCurrentCityEntityFromStorage() {
+        guard let entity = getEntity() else { return }
+        output?.updateEntity(with: entity)
     }
     
     //MARK: - EntityStorage

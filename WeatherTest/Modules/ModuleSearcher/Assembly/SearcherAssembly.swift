@@ -9,8 +9,7 @@ import UIKit
 
 class SearcherAssembly {
     static func configSearcherModule(output: ModuleOuput?) -> UIViewController? {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "SearcherViewController") as? SearcherViewController else { return nil }
+        guard let controller = R.storyboard.main.searcherViewController() else { return nil }
         
         let presenter = SearcherPresenterImp()
         let interactor = SearcherInteractorImp()
@@ -22,6 +21,8 @@ class SearcherAssembly {
         let backgroudConfigService = BackgroudViewServiceImp()
         let weatherService = WeatherDataServiceImp()
         let dateFormatter = DateFormatterServiceImp()
+        let aletService = AlertNotificationServiceImp()
+        let coreDataService = CoreDataServiceImp()
         
         presenter.interactor = interactor
         presenter.router = router
@@ -35,8 +36,10 @@ class SearcherAssembly {
         interactor.backgroudConfigService = backgroudConfigService
         interactor.weatherService = weatherService
         interactor.dateFormatter = dateFormatter
+        interactor.coreDataService = coreDataService
         
         controller.presenter = presenter
+        controller.alertService = aletService
         router.view = controller
         
         return controller

@@ -8,15 +8,15 @@
 import CoreLocation
 
 protocol LocationService {
-    func geoCodingCoordinates(currentLocation: CLLocation, completion: @escaping (String, CLLocationDegrees, CLLocationDegrees) -> ())
-    func geoCodingAddress(city: String, completion: @escaping (CLLocation) -> ())
+    func geoCodingCoordinates(currentLocation: CLLocation, completion: @escaping (String?, CLLocationDegrees?, CLLocationDegrees?, Error?) -> ())
+    func geoCodingAddress(city: String, completion: @escaping (CLLocation?, Error?) -> ())
 }
 
 //MARK: - Implementation
 
 final class LocationServiceImp: LocationService {
     
-    func geoCodingCoordinates(currentLocation: CLLocation, completion: @escaping (String, CLLocationDegrees, CLLocationDegrees) -> ()) {
+    func geoCodingCoordinates(currentLocation: CLLocation, completion: @escaping (String?, CLLocationDegrees?, CLLocationDegrees?, Error?) -> ()) {
         let lat = currentLocation.coordinate.latitude
         let long = currentLocation.coordinate.longitude
         
@@ -24,20 +24,26 @@ final class LocationServiceImp: LocationService {
         let location = CLLocation(latitude: lat, longitude: long)
         geoCoder.reverseGeocodeLocation(location) { placemarks, error in
             if let placeMark = placemarks?.first {
-                if let city = placeMark.subAdministrativeArea {
-                    completion(city, lat, long)
+                if let city = placeMark.locality {
+                    completion(city, lat, long, nil)
                 } else {
                     print("Error with reversing geocode location")
                 }
+            } else {
+                completion(nil, nil, nil, error)
             }
         }
     }
-    func geoCodingAddress(city: String, completion: @escaping (CLLocation) -> ()) {
+    func geoCodingAddress(city: String, completion: @escaping (CLLocation? , Error?) -> ()) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(city) { coordinate, error in
-            DispatchQueue.main.async {
-                guard let location = coordinate?.first?.location else { return }
-                completion(location)
+            if error == nil {
+                DispatchQueue.main.async {
+                    guard let location = coordinate?.first?.location else { return }
+                    completion(location, nil)
+                }
+            } else {
+                completion(nil, error)
             }
         }
     }

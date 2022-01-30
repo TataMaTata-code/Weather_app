@@ -60,7 +60,6 @@ class WeekCollectionViewCell: UICollectionViewCell {
         }
         
         iconWeather.snp.makeConstraints { make in
-//            make.left.right.equalToSuperview()
             make.center.equalToSuperview()
             make.width.equalTo(25)
             make.height.equalTo(20)

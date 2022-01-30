@@ -11,13 +11,14 @@ import CoreLocation
 protocol MainInteractorInput {
     var output: MainInteractorOuput? { get set }
     func locationAccess()
-    func checkConnection()
+    func loadWeatherFromStorage()
     func loadWeatherForecast(with model: WeatherModel)
 }
 
 protocol MainInteractorOuput: AnyObject {
     func updateEntity(entity: MainEntity)
-    func updateBackgroud(fileName: String, color: String)
+    func updateBackground(with model: BackgroundModel)
+    func networkConnection(status: Bool)
 }
 
 //MARK: - Implementation
@@ -30,13 +31,12 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     var storageService: SharedStorage!
     var dateFormatterService: DateFormatterService!
     var backgroudConfigService: BackgroudViewService!
+    var coreDataService: CoreDataService!
     
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
-        
-    var entity: MainEntity?
     
-    var isConnected = false
+    var entity: MainEntity?
     
     func locationAccess() {
         locationManager.delegate = self
@@ -45,14 +45,15 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
     }
     
     private func configEntity(with mapped: WeatherResponse, model: WeatherModel) {
+        let offset = mapped.timezone_offset
         let city = model.city
         let icon = mapped.current.weather.first?.icon ?? ""
         let temp = "\(Int(mapped.current.temp))°"
         let wind = " : \(Int(mapped.current.wind_speed)) m/s"
         let humidity = " : \(Int(mapped.current.humidity))%"
         let descript = mapped.current.weather.first?.main ?? ""
-        let sunrise = dateFormatterService.dateFormatter(dt: mapped.current.sunrise, format: " HH:mm")
-        let sunset = dateFormatterService.dateFormatter(dt: mapped.current.sunset, format: " HH:mm")
+        let sunrise = dateFormatterService.dateFormatterWithTimeZone(format: " HH:mm", dt: mapped.current.sunrise, offset: offset)
+        let sunset = dateFormatterService.dateFormatterWithTimeZone(format: " HH:mm", dt: mapped.current.sunset, offset: offset)
         let entity = MainEntity(city: city,
                                 icon: icon,
                                 temp: temp,
@@ -66,23 +67,23 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
                                 daily: mapped.daily)
         saveEntity(entity: entity)
         output?.updateEntity(entity: entity)
-        output?.updateBackgroud(fileName: backgroudConfigService.backgroudAnimation(entity: entity),
-                                color: backgroudConfigService.backgroudColor(entity: entity))
+        output?.updateBackground(with: backgroudConfigService.backgroudConfigWithEntity(entity: entity))
     }
     
     func loadWeatherForecast(with model: WeatherModel) {
-        weatherService.loadWeatherData(lat: model.lat, long: model.long) { [weak self] mapped in
-            self?.configEntity(with: mapped, model: model)
+        weatherService.loadWeatherData(lat: model.lat, long: model.long) { [weak self] mapped, error in
+            if mapped != nil {
+                guard let mapped = mapped else { return }
+                self?.configEntity(with: mapped, model: model)
+            } else {
+                self?.getEntityFromStorage()
+                print("Error: \(String(describing: error))")
+            }
         }
     }
     
-    func checkConnection() {
-        if !isConnected {
-            guard let entity = getEntity() else { return }
-            output?.updateEntity(entity: entity)
-            output?.updateBackgroud(fileName: backgroudConfigService.backgroudAnimation(entity: entity),
-                                    color: backgroudConfigService.backgroudColor(entity: entity))
-        }
+    func loadWeatherFromStorage() {
+        getEntityFromStorage()
     }
     
     //MARK: - UserDefaults
@@ -102,6 +103,12 @@ final class MainInteractorImp: NSObject, MainInteractorInput {
         let data = try? JSONEncoder().encode(model)
         storageService.setValue(key: StorageKey.keyForWeatherModel, value: data)
     }
+    private func getEntityFromStorage() {
+        guard let entity = getEntity() else { return }
+        
+        output?.updateEntity(entity: entity)
+        output?.updateBackground(with: backgroudConfigService.backgroudConfigWithEntity(entity: entity))
+    }
 }
 //MARK: - Extensions
 
@@ -110,13 +117,18 @@ extension MainInteractorImp: CLLocationManagerDelegate {
         if !locations.isEmpty {
             self.currentLocation = locations.first ?? CLLocation()
             self.locationManager.stopUpdatingLocation()
-            locationService.geoCodingCoordinates(currentLocation: currentLocation) { [weak self] city, lat, long in
-                self?.isConnected = true
-                
-                let newModel = WeatherModel(city: city, lat: lat, long: long)
-                self?.loadWeatherForecast(with: newModel)
-                self?.saveModel(with: newModel)
+            locationService.geoCodingCoordinates(currentLocation: currentLocation) { [weak self] city, lat, long, error in
+                if error == nil {
+                    let newModel = WeatherModel(city: city ?? "", lat: lat ?? 0, long: long ?? 0)
+                    self?.loadWeatherForecast(with: newModel)
+//                    self?.saveModel(with: newModel)
+                    self?.coreDataService.saveModel(with: newModel)
+                } else {
+                    self?.getEntityFromStorage()
+                    self?.output?.networkConnection(status: false)
+                }
             }
         }
     }
 }
+
