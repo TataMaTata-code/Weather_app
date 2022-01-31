@@ -26,10 +26,11 @@ final class CoreDataServiceImp: CoreDataService {
         context.perform {
             try? self.context.save()
         }
+        
     }
     
     func fetchModel() -> WeatherCityModel? {
         guard let model = try? context.fetch(WeatherCityModel.fetchRequest()) else { return nil }
-        return model.first
+        return model.last
     }
 }

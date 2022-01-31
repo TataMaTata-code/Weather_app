@@ -16,6 +16,7 @@ class CurrentLocationTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var feelsLikeLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
     var didSelectedRow: (()->())?
     private var skView: SKView { backgroundView as! SKView }
@@ -42,7 +43,8 @@ class CurrentLocationTableViewCell: UITableViewCell {
     
     func configurateBackground(with model: BackgroundModel) {
         scene = SKScene(size: self.frame.size)
-        skView.addCornerRadius(contentView: skView, cornerRadius: skView.frame.height / 6.5, borderWidth: 0, color: .clear)
+        let rowHeight: CGFloat = 115
+        skView.addCornerRadius(contentView: skView, cornerRadius: rowHeight / 6.5, borderWidth: 0, color: .clear)
         skView.presentScene(scene)
        
         let beginColor = UIColor(hex: model.beginColor) ?? .white
@@ -71,7 +73,8 @@ class CurrentLocationTableViewCell: UITableViewCell {
         layer.frame = frame
         layer.colors = [beginColor.cgColor, endColor.cgColor]
         UIGraphicsBeginImageContext(CGSize(width: frame.width, height: frame.height))
-        layer.render(in: UIGraphicsGetCurrentContext()!)
+        guard let context = UIGraphicsGetCurrentContext() else { return UIImage()}
+        layer.render(in: context)
         guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
         UIGraphicsEndImageContext()
         return image

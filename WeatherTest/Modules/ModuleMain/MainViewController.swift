@@ -244,5 +244,4 @@ extension MainViewController: MainPresenterOutput {
     func changeStatusNetwork(status: Bool) {
         checkConnection(status: status)
     }
-
 }

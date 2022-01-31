@@ -20,7 +20,9 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
     private var entities: [SearcherEntity] = []
     
     var alertService: AlertNotificationService!
-        
+    
+    var rowHeight: CGFloat = 115
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewIsReady()
@@ -101,7 +103,7 @@ extension SearcherViewController: UITableViewDataSource {
             let lat = searcherEntity?.lat ?? 0
             let long = searcherEntity?.long ?? 0
             let city = searcherEntity?.city ?? ""
-            
+                        
             cell.configurateBackground(with: model)
             cell.locationLabel.text = "Current location"
             cell.cityNameOrTimeLabel.text = searcherEntity?.city
@@ -117,10 +119,9 @@ extension SearcherViewController: UITableViewDataSource {
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrentLocationTableViewCell.identifier, for: indexPath) as? CurrentLocationTableViewCell else { return UITableViewCell() }
             let entity = entities[indexPath.row - 1]
-
+            
             let model = entity.background
             
-//            cell.configBackground(fileName: fileName, color: color)
             cell.configurateBackground(with: model)
             cell.locationLabel.text = entity.city
             cell.cityNameOrTimeLabel.text = entity.currentTime
@@ -134,6 +135,11 @@ extension SearcherViewController: UITableViewDataSource {
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return rowHeight
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row != 0 {
             cell.alpha = 0
