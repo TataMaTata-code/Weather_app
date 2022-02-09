@@ -13,7 +13,7 @@ protocol DateFormatterService {
 
 final class DateFormatterServiceImp: DateFormatterService {
     func dateFormatter(dt: Int, format: String, offset: Int) -> String {
-        let today = "Today"
+        let today = R.string.localizable.dayToday()
         
         let date = Date(timeIntervalSince1970: TimeInterval(dt))
         let dateOffset = Date(timeInterval: TimeInterval(offset), since: date)

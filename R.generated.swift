@@ -407,6 +407,199 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
+  /// This `R.string` struct is generated, and contains static references to 3 localization tables.
+  struct string {
+    /// This `R.string.launchScreen` struct is generated, and contains static references to 0 localization keys.
+    struct launchScreen {
+      fileprivate init() {}
+    }
+
+    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
+    struct localizable {
+      /// en translation: Current location
+      ///
+      /// Locales: ru, en
+      static let locationLabelText = Rswift.StringResource(key: "locationLabel.text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+      /// en translation: Enable to find city
+      ///
+      /// Locales: ru, en
+      static let alertForSearcherTitle = Rswift.StringResource(key: "alertForSearcher.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+      /// en translation: Fells like: 
+      ///
+      /// Locales: ru, en
+      static let feelsLikeLabelText = Rswift.StringResource(key: "feelsLikeLabel.text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+      /// en translation: No current weather information available
+      ///
+      /// Locales: ru, en
+      static let alertForMainMessage = Rswift.StringResource(key: "alertForMain.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+      /// en translation: No internet connection
+      ///
+      /// Locales: ru, en
+      static let alertForMainTitle = Rswift.StringResource(key: "alertForMain.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+      /// en translation: Search
+      ///
+      /// Locales: ru, en
+      static let searcherPlaceholder = Rswift.StringResource(key: "searcher.placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+      /// en translation: There is no internet connection or the city does not exist
+      ///
+      /// Locales: ru, en
+      static let alertForSearcherMessage = Rswift.StringResource(key: "alertForSearcher.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+      /// en translation: Today
+      ///
+      /// Locales: ru, en
+      static let dayToday = Rswift.StringResource(key: "day.today", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "en"], comment: nil)
+
+      /// en translation: Current location
+      ///
+      /// Locales: ru, en
+      static func locationLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("locationLabel.text", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "locationLabel.text"
+        }
+
+        return NSLocalizedString("locationLabel.text", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Enable to find city
+      ///
+      /// Locales: ru, en
+      static func alertForSearcherTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("alertForSearcher.title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "alertForSearcher.title"
+        }
+
+        return NSLocalizedString("alertForSearcher.title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Fells like: 
+      ///
+      /// Locales: ru, en
+      static func feelsLikeLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("feelsLikeLabel.text", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "feelsLikeLabel.text"
+        }
+
+        return NSLocalizedString("feelsLikeLabel.text", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No current weather information available
+      ///
+      /// Locales: ru, en
+      static func alertForMainMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("alertForMain.message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "alertForMain.message"
+        }
+
+        return NSLocalizedString("alertForMain.message", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No internet connection
+      ///
+      /// Locales: ru, en
+      static func alertForMainTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("alertForMain.title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "alertForMain.title"
+        }
+
+        return NSLocalizedString("alertForMain.title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search
+      ///
+      /// Locales: ru, en
+      static func searcherPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("searcher.placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "searcher.placeholder"
+        }
+
+        return NSLocalizedString("searcher.placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: There is no internet connection or the city does not exist
+      ///
+      /// Locales: ru, en
+      static func alertForSearcherMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("alertForSearcher.message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "alertForSearcher.message"
+        }
+
+        return NSLocalizedString("alertForSearcher.message", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Today
+      ///
+      /// Locales: ru, en
+      static func dayToday(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("day.today", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "day.today"
+        }
+
+        return NSLocalizedString("day.today", bundle: bundle, comment: "")
+      }
+
+      fileprivate init() {}
+    }
+
+    /// This `R.string.main` struct is generated, and contains static references to 1 localization keys.
+    struct main {
+      /// ru translation: Search
+      ///
+      /// Locales: ru
+      static let pdW4eQ8XPlaceholder = Rswift.StringResource(key: "pdW-4e-q8X.placeholder", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+
+      /// ru translation: Search
+      ///
+      /// Locales: ru
+      static func pdW4eQ8XPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("pdW-4e-q8X.placeholder", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "pdW-4e-q8X.placeholder"
+        }
+
+        return NSLocalizedString("pdW-4e-q8X.placeholder", tableName: "Main", bundle: bundle, comment: "")
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()

@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  WeatherTest
+
+  Created by Tata on 09/02/22.
+  
+*/
+
+"locationLabel.text" = "Текущее место";
+"feelsLikeLabel.text" = "Ощущается как: ";
+"day.today" = "Сегодня";
+
+"searcher.placeholder" = "Поиск";
+
+"alertForMain.title" = "Нет интернет соединения";
+"alertForMain.message" = "Не удалось получить текущую информацию о погоде";
+"alertForSearcher.title" = "Не удалось найти город";
+"alertForSearcher.message" = "Отсутствует соединение с интернетом или такого города не существует";
+
+

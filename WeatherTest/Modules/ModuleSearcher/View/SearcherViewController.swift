@@ -25,9 +25,7 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
     private var entities: [SearcherEntity] = []
     
     var alertService: AlertNotificationService!
-    
-    var rowHeight: CGFloat = 115
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewIsReady()
@@ -43,8 +41,8 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
     }
     
     private func checkConnection(status: Bool) {
-        let title = "City cannot be found"
-        let message = "Perhaps this city is not in the list or there is no Interner connection"
+        let title = R.string.localizable.alertForSearcherTitle()
+        let message = R.string.localizable.alertForSearcherMessage()
         if !status {
             alertService.showErrorAlert(self: self, title: title, message: message)
         }
@@ -58,6 +56,7 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
         searcher.delegate = self
         
         searcher.backgroundColor = .clear
+        searcher.placeholder = R.string.localizable.searcherPlaceholder()
     }
     
     func configTableView() {
@@ -110,7 +109,7 @@ extension SearcherViewController: UITableViewDataSource {
             let city = searcherEntity?.city ?? ""
                         
             cell.configurateBackground(with: model)
-            cell.locationLabel.text = "Current location"
+            cell.locationLabel.text = R.string.localizable.locationLabelText()
             cell.cityNameOrTimeLabel.text = searcherEntity?.city
             cell.temperatureLabel.text = searcherEntity?.temp
             cell.descriptionLabel.text = searcherEntity?.descript
@@ -142,6 +141,7 @@ extension SearcherViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let rowHeight: CGFloat = 120
         return rowHeight
     }
     

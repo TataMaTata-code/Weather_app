@@ -52,8 +52,8 @@ class MainViewController: UIViewController {
     }
     
     private func checkConnection(status: Bool) {
-        let title = "No internet connection"
-        let message = "No current weather information available"
+        let title = R.string.localizable.alertForMainTitle()
+        let message = R.string.localizable.alertForMainMessage()
         if !status {
             alertService.showErrorAlert(self: self, title: title, message: message)
         }

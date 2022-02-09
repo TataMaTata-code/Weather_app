@@ -37,7 +37,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     var descriptionWeather: UILabel = {
        let text = UILabel()
-        text.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
+        text.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
         text.textAlignment = .center
         text.textColor = .white
         return text

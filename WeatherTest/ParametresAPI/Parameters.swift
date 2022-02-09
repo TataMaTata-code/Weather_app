@@ -15,5 +15,5 @@ enum Parameters {
     static let appid = "appid"
     static let exclude = "exclude"
     static let exclusion = "minutely"
-    
+    static let language = "lang"
 }

@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  WeatherTest
+
+  Created by Tata on 09/02/22.
+  
+*/
+
+"locationLabel.text" = "Current location";
+"feelsLikeLabel.text" = "Fells like: ";
+"day.today" = "Today";
+
+"searcher.placeholder" = "Search";
+
+"alertForMain.title" = "No internet connection";
+"alertForMain.message" = "No current weather information available";
+"alertForSearcher.title" = "Enable to find city";
+"alertForSearcher.message" = "There is no internet connection or the city does not exist";
+

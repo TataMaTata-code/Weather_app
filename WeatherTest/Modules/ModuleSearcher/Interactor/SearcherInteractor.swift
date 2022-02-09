@@ -48,7 +48,7 @@ final class SearcherInteractorImp: SearcherInteractorInput {
         let city = city
         let descript = mapped.current.weather.first?.description ?? ""
         let temp = "\(Int(mapped.current.temp))°"
-        let feelsLike = "Feels like: \(Int(mapped.current.feels_like))°"
+        let feelsLike = R.string.localizable.feelsLikeLabelText() + "\(Int(mapped.current.feels_like))°"
         let entity = SearcherEntity(background: backgroudConfigService.backgroundConfigWithModel(with: mapped),
                                     lat: lat,
                                     long: long,
