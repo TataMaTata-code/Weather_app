@@ -121,8 +121,7 @@ extension MainInteractorImp: CLLocationManagerDelegate {
                 if error == nil {
                     let newModel = WeatherModel(city: city ?? "", lat: lat ?? 0, long: long ?? 0)
                     self?.loadWeatherForecast(with: newModel)
-//                    self?.saveModel(with: newModel)
-                    self?.coreDataService.saveModel(with: newModel)
+                    self?.saveModel(with: newModel)
                 } else {
                     self?.getEntityFromStorage()
                     self?.output?.networkConnection(status: false)

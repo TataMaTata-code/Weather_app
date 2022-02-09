@@ -9,6 +9,11 @@ import UIKit
 import CoreLocation
 
 class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
+    
+    deinit {
+        print("deinit: SearcherViewController")
+    }
+    
     @IBOutlet weak var searcher: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -67,8 +72,8 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
     private func reloadTableView() {
         UIView.transition(with: tableView,
                           duration: 0.3,
-                          options: .transitionCrossDissolve) {
-            self.tableView.reloadData()
+                          options: .transitionCrossDissolve) { [weak self] in
+            self?.tableView.reloadData()
         }
     }
     
@@ -141,13 +146,11 @@ extension SearcherViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 {
             cell.alpha = 0
             UIView.animate(withDuration: 1,
                            delay: 0.05 * Double(indexPath.row),
-                           options: .curveEaseOut) {
-                cell.alpha = 1
-            }
+                           options: .curveEaseOut) { [weak cell] in
+                cell?.alpha = 1
         }
     }
 }

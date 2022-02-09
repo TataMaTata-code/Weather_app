@@ -9,11 +9,9 @@ import UIKit
 
 extension UIView {
     
-    func addCornerRadius(contentView: UIView, cornerRadius: CGFloat, borderWidth: CGFloat, color: UIColor) {
+    func addCornerRadius(contentView: UIView, cornerRadius: CGFloat) {
         
         contentView.layer.cornerRadius = cornerRadius
-        contentView.layer.borderWidth = borderWidth
-        contentView.layer.borderColor = color.cgColor
         contentView.layer.masksToBounds = true
     }
     

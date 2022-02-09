@@ -19,13 +19,14 @@ final class WeatherDataServiceImp: WeatherDataService {
     func loadWeatherData(lat: CLLocationDegrees, long: CLLocationDegrees, completion: @escaping (WeatherResponse?, Error?) -> ()) {
         AF.request(prepareLoadDataRequest(lat: lat, long: long)).response { response in
             do {
-                if let data = response.data {
+                guard let data = response.data else { return }
                     let mapped = try JSONDecoder().decode(WeatherResponse.self, from: data)
                     completion(mapped, nil)
-                } else if let error = response.error {
-                    completion(nil, error)
-                }
+//                } else if let error = response.error {
+//                    completion(nil, error)
+//                }
             } catch let error {
+                completion(nil, error)
                 print(error)
             }
         }

@@ -87,21 +87,19 @@ final class SearcherInteractorImp: SearcherInteractorInput {
             }
         }
     }
-    
     func loadWeather() {
-        getCurrentCityEntityFromStorage()
-//        guard let model = getModel() else { return }
-        guard let model = coreDataService.fetchModel() else { return }
+        guard let model = getModel() else { return }
         weatherService.loadWeatherData(lat: model.lat, long: model.long) { [weak self] mapped, error  in
-            if mapped != nil {
-                guard let mapped = mapped else { return }
-                self?.updateLocationWeatherCell(with: model.city ?? "", mapped: mapped)
+            if let newMapped = mapped {
+                self?.updateLocationWeatherCell(with: model.city, mapped: newMapped)
             } else {
                 self?.getCurrentCityEntityFromStorage()
                 print("Error: \(String(describing: error))")
             }
         }
+        self.getCurrentCityEntityFromStorage()
     }
+    
     func loadWeatherForCells() {
         loadCitiesWeather()
     }

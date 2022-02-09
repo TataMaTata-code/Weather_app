@@ -24,7 +24,7 @@ class CurrentLocationTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundView?.frame = backgroundView?.frame.inset(by: UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)) ?? CGRect()
+        configBackgroundView()
     }
     
     override func awakeFromNib() {
@@ -36,6 +36,13 @@ class CurrentLocationTableViewCell: UITableViewCell {
         scene.removeAllChildren()
     }
     
+    private func configBackgroundView() {
+        let cornerRadius: CGFloat = 18
+
+        backgroundView?.addCornerRadius(contentView: backgroundView ?? UIView(), cornerRadius: cornerRadius)
+        backgroundView?.frame = backgroundView?.frame.inset(by: UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)) ?? CGRect()
+    }
+    
     private func addSkView() {
         let skView = SKView(frame: self.frame)
         backgroundView = skView
@@ -43,12 +50,11 @@ class CurrentLocationTableViewCell: UITableViewCell {
     
     func configurateBackground(with model: BackgroundModel) {
         scene = SKScene(size: self.frame.size)
-        let rowHeight: CGFloat = 115
-        skView.addCornerRadius(contentView: skView, cornerRadius: rowHeight / 6.5, borderWidth: 0, color: .clear)
+//        skView.addCornerRadius(contentView: skView, cornerRadius: cornerRadius)
         skView.presentScene(scene)
        
-        let beginColor = UIColor(hex: model.beginColor) ?? .white
-        let endColor = UIColor(hex: model.endColor) ?? .white
+        let beginColor = UIColor(hex: model.beginColor) ?? .clear
+        let endColor = UIColor(hex: model.endColor) ?? .clear
         
         let texture = SKTexture(image: imageWithGradient(from: beginColor, to: endColor, with: self.frame))
         let background = SKSpriteNode(texture: texture)
