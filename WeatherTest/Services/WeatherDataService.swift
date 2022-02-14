@@ -22,9 +22,6 @@ final class WeatherDataServiceImp: WeatherDataService {
                 guard let data = response.data else { return }
                     let mapped = try JSONDecoder().decode(WeatherResponse.self, from: data)
                     completion(mapped, nil)
-//                } else if let error = response.error {
-//                    completion(nil, error)
-//                }
             } catch let error {
                 completion(nil, error)
                 print(error)

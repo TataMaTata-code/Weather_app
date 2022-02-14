@@ -53,7 +53,8 @@ struct WeatherBackgroundDictionary {
 //    50n
     private let fogNight = BackgroundModel(beginColor: "#232526", endColor: "#414345", node: "FogParticle", secondNode: " ")
     
-    lazy var dictionary: [String: BackgroundModel] = ["01d": sunnyDay,
+    lazy var dictionary: [String: BackgroundModel] = [
+                      "01d": sunnyDay,
                       "01n": clearNight,
                       "02d": cloudsWithSun,
                       "02n": nightClearClouds,

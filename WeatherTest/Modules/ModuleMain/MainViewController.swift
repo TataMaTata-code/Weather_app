@@ -37,18 +37,32 @@ class MainViewController: UIViewController {
         config()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear")
+    }
+    
     override var shouldAutorotate: Bool {
         return false
+    }
+    private func config() {
+        configTableView()
+        configButton()
     }
     
     private func prepareView() {
         let skView = SKView(frame: view.frame)
         view = skView
+        view.alpha = 0
     }
     
-    private func config() {
-        configTableView()
-        configButton()
+    private func animateAlphaView() {
+        self.view.alpha = 0
+        UIView.animate(withDuration: 1.2,
+                       delay: 0,
+                       options: .curveEaseOut) {
+            self.view.alpha = 1
+        }
     }
     
     private func checkConnection(status: Bool) {
@@ -233,6 +247,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 }
 extension MainViewController: MainPresenterOutput {
     func setState(with entity: MainEntity) {
+        animateAlphaView()
         mainEntity = entity
         tableView.reloadData()
     }

@@ -25,7 +25,7 @@ class SearcherViewController: UIViewController, UISearchResultsUpdating, UISearc
     private var entities: [SearcherEntity] = []
     
     var alertService: AlertNotificationService!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewIsReady()
@@ -107,7 +107,7 @@ extension SearcherViewController: UITableViewDataSource {
             let lat = searcherEntity?.lat ?? 0
             let long = searcherEntity?.long ?? 0
             let city = searcherEntity?.city ?? ""
-                        
+            
             cell.configurateBackground(with: model)
             cell.locationLabel.text = R.string.localizable.locationLabelText()
             cell.cityNameOrTimeLabel.text = searcherEntity?.city
@@ -146,11 +146,13 @@ extension SearcherViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
             cell.alpha = 0
             UIView.animate(withDuration: 1,
                            delay: 0.05 * Double(indexPath.row),
                            options: .curveEaseOut) { [weak cell] in
                 cell?.alpha = 1
+            }
         }
     }
 }
@@ -181,7 +183,7 @@ extension SearcherViewController: UITableViewDelegate {
 extension SearcherViewController: SearcherPresenterOuput {
     func setStateWithEntity(with entity: SearcherEntity) {
         searcherEntity = entity
-        tableView.reloadData()
+        reloadTableView()
     }
     func setStateWithEntities(with entities: [SearcherEntity]) {
         self.entities = entities
